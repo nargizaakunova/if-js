@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/nargizaakunova/if-js/issues"
   },
-  "homepage": "https://github.com/nargizaakunova/if-js#readme"
+  "homepage": "https://github.com/nargizaakunova/if-js#readme",
+  "devDependencies": {
+    "prettier": "2.8.8"
+  }
 }
