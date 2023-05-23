@@ -18,6 +18,7 @@
         "ignoreReadBeforeAssign": false
       }
     ],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "no-var": "error"
   }
 }
