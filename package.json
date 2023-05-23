@@ -4,7 +4,9 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install",
+    "lint": "npx prettier . --write && npx eslint main.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/nargizaakunova/if-js#readme",
   "devDependencies": {
     "eslint": "^8.41.0",
+    "husky": "^8.0.3",
     "prettier": "2.8.8"
   }
 }
