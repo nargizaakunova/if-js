@@ -17,6 +17,7 @@
         "destructuring": "any",
         "ignoreReadBeforeAssign": false
       }
-    ]
+    ],
+    "semi": ["error", "always"]
   }
 }
