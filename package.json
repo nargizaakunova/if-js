@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/nargizaakunova/if-js#readme",
   "devDependencies": {
+    "eslint": "^8.41.0",
     "prettier": "2.8.8"
   }
 }
