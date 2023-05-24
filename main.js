@@ -19,3 +19,12 @@ console.log(test);
 
 console.log(Boolean(test)); // true
 
+// 8)
+const arr = [2, 3, 5, 8];
+let multipliedAmount = 1;
+
+for (let i = 0; i < arr.length; i++) {
+  multipliedAmount *= arr[i];
+}
+
+console.log(multipliedAmount);
