@@ -37,3 +37,12 @@ for (let i = 0; i < arr2.length; i++) {
     console.log(arr2[i]);
   }
 }
+
+// 10)
+const arr3 = [2, 5, 8, 15, 0, 6, 20, 3];
+
+for (let i = 0; i < arr3.length; i++) {
+  if (arr3[i] % 2 === 0) {
+    console.log(arr3[i]);
+  }
+}
