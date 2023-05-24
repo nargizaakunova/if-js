@@ -17,6 +17,9 @@
         "destructuring": "any",
         "ignoreReadBeforeAssign": false
       }
-    ]
+    ],
+    "semi": ["error", "always"],
+    "no-var": "error",
+    "comma-dangle": ["error", "always-multiline"]
   }
 }
