@@ -28,3 +28,12 @@ for (let i = 0; i < arr.length; i++) {
 }
 
 console.log(multipliedAmount);
+
+// 9)
+const arr2 = [2, 5, 8, 15, 0, 6, 20, 3];
+
+for (let i = 0; i < arr2.length; i++) {
+  if (arr2[i] > 5 && arr2[i] < 10) {
+    console.log(arr2[i]);
+  }
+}
