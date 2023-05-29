@@ -71,3 +71,32 @@ try {
 } catch (error) {
   console.error(error.message);
 }
+
+// 1. Min
+function getMinVal(a, b) {
+  return Math.min(a, b);
+}
+
+console.log(getMinVal(5, 15));
+console.log(getMinVal(1000, 15));
+
+// 2. Max
+
+const getMaxVal = (a, b) => Math.max(a, b);
+console.log(getMaxVal(10, 1000));
+console.log(getMaxVal(150, 8));
+
+// 3. Ternary operator
+function getMinValue(a, b) {
+  return a < b ? a : b;
+}
+
+console.log(getMinValue(1, 10));
+console.log(getMinValue('abc', 'abd'));
+
+function getMaxValue(a, b) {
+  return a > b ? a : b;
+}
+
+console.log(getMaxValue(1, 11));
+console.log(getMaxValue('abc', 'abd'));
