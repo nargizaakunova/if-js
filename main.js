@@ -1,3 +1,4 @@
+console.log('------------------- Lesson 15 -----------------------');
 // 6)
 let user = 'John Doe';
 console.log(user);
@@ -45,4 +46,28 @@ for (let i = 0; i < arr3.length; i++) {
   if (arr3[i] % 2 === 0) {
     console.log(arr3[i]);
   }
+}
+
+console.log('------------------- Lesson 16 -----------------------');
+// Palindrome
+const palindrome = (word) => {
+  if (typeof word !== 'string') {
+    throw new Error("Input should be of type 'string'");
+  }
+  let reversedWord = '';
+  for (let i = word.length - 1; i >= 0; i--) {
+    reversedWord += word[i];
+  }
+  if (reversedWord === word) {
+    return true;
+  }
+  return false;
+};
+
+try {
+  console.log(palindrome('abba'));
+  console.log(palindrome('hello'));
+  console.log(palindrome(123321));
+} catch (error) {
+  console.error(error.message);
 }
