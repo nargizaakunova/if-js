@@ -100,3 +100,22 @@ function getMaxValue(a, b) {
 
 console.log(getMaxValue(1, 11));
 console.log(getMaxValue('abc', 'abd'));
+
+// Element replacement
+const array = [10, 400, 50, 205, 0, 13, 350, 18, 960, 7000];
+const array2 = [1, 40, 500, 200005, 16];
+const replaceZero = (arr) => {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    const number = arr[i].toString();
+    if (!number.includes(0)) {
+      result.push(+number);
+    } else {
+      result.push(number.replaceAll('0', 'zero'));
+    }
+  }
+  return result;
+};
+
+console.log(replaceZero(array));
+console.log(replaceZero(array2));
