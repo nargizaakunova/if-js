@@ -102,9 +102,19 @@ console.log(getMaxValue(1, 11));
 console.log(getMaxValue('abc', 'abd'));
 
 // Element replacement
-const array = [10, 400, 50, 205, 0, 13, 350, 18, 960, 7000];
-const array2 = [1, 40, 500, 200005, 16];
 
+const createListWithRandomNums = () => {
+  const array = [];
+  for (let i = 1; i <= 10; i++) {
+    const num = Math.floor(Math.random() * 101);
+    array.push(num);
+  }
+  return array;
+};
+
+const array1 = createListWithRandomNums();
+const array2 = createListWithRandomNums();
+const array3 = createListWithRandomNums();
 // Solution 1
 const replaceZero = (arr) => {
   const result = [];
@@ -119,8 +129,9 @@ const replaceZero = (arr) => {
   return result;
 };
 
-console.log(replaceZero(array));
+console.log(replaceZero(array1));
 console.log(replaceZero(array2));
+console.log(replaceZero(array3));
 
 // Solution 2
 const replaceZero2 = (arr) => {
@@ -144,5 +155,6 @@ const replaceZero2 = (arr) => {
   return result;
 };
 
-console.log(replaceZero2(array));
+console.log(replaceZero2(array1));
 console.log(replaceZero2(array2));
+console.log(replaceZero2(array3));
