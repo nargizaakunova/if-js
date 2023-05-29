@@ -108,10 +108,18 @@ const replaceZero = (arr) => {
   const result = [];
   for (let i = 0; i < arr.length; i++) {
     const number = arr[i].toString();
-    if (!number.includes(0)) {
+    if (!number.includes('0')) {
       result.push(+number);
     } else {
-      result.push(number.replaceAll('0', 'zero'));
+      let combo = '';
+      for (let j = 0; j < number.length; j++) {
+        if (number[j] === '0') {
+          combo += 'zero';
+        } else {
+          combo += number[j];
+        }
+      }
+      result.push(combo);
     }
   }
   return result;
