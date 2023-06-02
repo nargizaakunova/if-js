@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "prepare": "husky install",
-    "lint": "npx prettier . --write && npx eslint --fix"
+    "lint": "npx prettier . --write && npx eslint --fix",
+    "prepublish": "npm run lint && npm test"
   },
   "repository": {
     "type": "git",
