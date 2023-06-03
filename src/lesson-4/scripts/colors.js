@@ -1,4 +1,10 @@
-export const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+export const colors = [
+  'magenta',
+  'cyan',
+  'firebrick',
+  'springgreen',
+  'skyblue',
+];
 
 export function changeElColorOnClick(el) {
   el.addEventListener('click', (e) => {

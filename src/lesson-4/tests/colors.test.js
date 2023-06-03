@@ -2,7 +2,13 @@ import colorize, { colors, changeElColorOnClick } from '../scripts/colors';
 
 describe('colors array', () => {
   test('should contain the expected color values', () => {
-    const expectedColors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+    const expectedColors = [
+      'magenta',
+      'cyan',
+      'firebrick',
+      'springgreen',
+      'skyblue',
+    ];
     expect(colors).toEqual(expectedColors);
   });
 });
