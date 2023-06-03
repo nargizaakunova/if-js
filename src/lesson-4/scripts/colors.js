@@ -1,6 +1,6 @@
-const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+export const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
-function changeElColorOnClick(el) {
+export function changeElColorOnClick(el) {
   el.addEventListener('click', (e) => {
     const currentColor = e.target.style.color;
     const currentColorIndex = colors.indexOf(currentColor);
