@@ -53,7 +53,7 @@ describe('changeElColorOnClick', () => {
 });
 
 describe('colorize', () => {
-  test('check if colorize function gets called appropriately', () => {
+  test('check if colorize function calls changeElColorOnClick fn appropriately', () => {
     // Mock the element for testing
     const mockElement = document.createElement('p');
     const mockEvent = { target: mockElement };
