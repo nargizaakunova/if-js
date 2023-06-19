@@ -6,7 +6,6 @@ const dayOfWeek = 4; // в моем примере понедельник рав
 const checkIn = 2;
 const checkOut = 7;
 
-
 function getCalendarMonth(
   daysInMonth,
   daysInWeek,
@@ -14,8 +13,16 @@ function getCalendarMonth(
   checkIn,
   checkOut,
 ) {
-  const calendarArrBeforeTransformation = getCalendarForCurrentMonth(daysInMonth, daysInWeek, dayOfWeek);
-  const transformedData = transformCalendarArr(calendarArrBeforeTransformation, checkIn, checkOut);
+  const calendarArrBeforeTransformation = getCalendarForCurrentMonth(
+    daysInMonth,
+    daysInWeek,
+    dayOfWeek,
+  );
+  const transformedData = transformCalendarArr(
+    calendarArrBeforeTransformation,
+    checkIn,
+    checkOut,
+  );
   return transformedData;
 }
 
@@ -71,4 +78,6 @@ function transformCalendarArr(calendarArr, checkIn, checkOut) {
   return result;
 }
 
-console.log(getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut));
+console.log(
+  getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut),
+);

@@ -80,4 +80,3 @@ console.log(deepEqual(obj4, obj1)); // true
 console.log(deepEqual(obj5, obj1)); // false
 console.log(deepEqual('obj5', 12)); // false
 console.log(deepEqual(null, null)); // false
-
