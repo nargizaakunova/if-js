@@ -29,3 +29,13 @@ const changeStyle = (id) => {
 changeStyle('text1');
 changeStyle('text2');
 changeStyle('text3');
+
+// Here I just checked if my object is indeed iterable:
+let i = 0;
+for (const item of colors) {
+  console.log(item);
+  i++;
+  if (i === 5) {
+    break;
+  }
+}
