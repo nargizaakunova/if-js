@@ -1,23 +1,31 @@
-const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+const colors = {
+  data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+  [Symbol.iterator]() {
+    let index = 0;
 
-const text1El = document.getElementById('text1');
-const text2El = document.getElementById('text2');
-const text3El = document.getElementById('text3');
+    return {
+      next: () => {
+        const color = this.data[index];
+        index++;
+        if (index > this.data.length - 1) {
+          index = 0;
+        }
+        return { value: color };
+      },
+    };
+  },
+};
 
-function changeElColorOnClick(el) {
-  el.addEventListener('click', (e) => {
-    const currentColor = e.target.style.color;
-    // console.log(currentColor);
-    const currentColorIndex = colors.indexOf(currentColor);
-    // console.log(currentColorIndex);
-    let nextColorIndex = currentColorIndex + 1;
-    if (nextColorIndex > colors.length - 1) {
-      nextColorIndex = 0;
-    }
-    e.target.style.color = colors[nextColorIndex];
+const changeStyle = (id) => {
+  const iterator = colors[Symbol.iterator]();
+  const element = document.getElementById(id);
+
+  element.addEventListener('click', (event) => {
+    event.target.style.color = iterator.next().value;
   });
-}
+};
 
-changeElColorOnClick(text1El);
-changeElColorOnClick(text2El);
-changeElColorOnClick(text3El);
+// Attach the changeStyle function to each paragraph
+changeStyle('text1');
+changeStyle('text2');
+changeStyle('text3');
