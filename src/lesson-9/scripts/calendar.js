@@ -2,12 +2,9 @@ console.log('Calendar');
 
 // July 2023
 const date = new Date();
-const currentMonth = date.getMonth();
-const currentYear = date.getFullYear();
+const currentMonth = date.getMonth(); // 6 (July)
+const currentYear = date.getFullYear(); // 2023
 
-//  2023
-// const currentMonth = 11; // all 0 index based
-// const currentYear = 2023;
 const year =
   currentMonth === 0
     ? currentYear - 1
@@ -17,7 +14,8 @@ const year =
 const month = currentMonth === 0 ? 11 : currentMonth;
 
 const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // 31 (July)
-const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+const firstDayOfMonth = new Date(currentYear, currentMonth, 1); // 1 (July)
+const daysInWeek = 7; // 7 days in a week
 const dayOfWeek =
   currentMonth === 0
     ? firstDayOfMonth.getDay() - 1 + daysInWeek
@@ -25,7 +23,10 @@ const dayOfWeek =
     ? 6
     : firstDayOfMonth.getDay() - 1;
 const lastDayOfPreviousMonth = new Date(year, month, 0).getDate(); // 30 (June)
-const daysInWeek = 7;
+
+const checkIn = 2;
+const checkOut = 7;
+const today = new Date().getDate();
 
 function getCalendarForCurrentMonth(daysInMonth, daysInWeek, dayOfWeek) {
   const result = [];
@@ -69,4 +70,45 @@ function getCalendarForCurrentMonth(daysInMonth, daysInWeek, dayOfWeek) {
   return result;
 }
 
-console.log(getCalendarForCurrentMonth(lastDayOfMonth, daysInWeek, dayOfWeek));
+const calendarForCurrentMonth = getCalendarForCurrentMonth(
+  lastDayOfMonth,
+  daysInWeek,
+  dayOfWeek,
+);
+console.log(calendarForCurrentMonth);
+
+function transformCalendarArr(calendarArr, checkIn, checkOut) {
+  let isCurrentMonth = false;
+  const result = [];
+  calendarArr.forEach((week) => {
+    const weekArr = [];
+    week.forEach((day) => {
+      // console.log(day);
+      if (day === 1) {
+        if (!isCurrentMonth) {
+          isCurrentMonth = true;
+        } else {
+          isCurrentMonth = false;
+        }
+      }
+      let isSelectedDay = false;
+      if (day >= checkIn && day <= checkOut) {
+        isSelectedDay = true;
+      }
+      let isCurrentDay = false;
+      if (day === today && isCurrentMonth) {
+        isCurrentDay = true;
+      }
+      weekArr.push({
+        dayOfMonth: day,
+        notCurrentMonth: !isCurrentMonth,
+        selectedDay: isSelectedDay,
+        currentDay: isCurrentDay,
+      });
+    });
+    result.push(weekArr);
+  });
+  return result;
+}
+
+console.log(transformCalendarArr(calendarForCurrentMonth, checkIn, checkOut));
