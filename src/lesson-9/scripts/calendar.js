@@ -14,17 +14,17 @@ const year =
 const month = currentMonth === 0 ? 11 : currentMonth;
 
 const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // 31 (July)
-const firstDayOfMonth = new Date(currentYear, currentMonth, 1); // 1 (July)
+const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay(); // 1 (July)
 const daysInWeek = 7; // 7 days in a week
 
 const dayOfWeek =
   currentMonth === 0
-    ? firstDayOfMonth.getDay() === 0
+    ? firstDayOfMonth === 0
       ? 6
-      : firstDayOfMonth.getDay() - 1
-    : firstDayOfMonth.getDay() === 0
+      : firstDayOfMonth - 1
+    : firstDayOfMonth === 0
     ? 6
-    : firstDayOfMonth.getDay() - 1;
+    : firstDayOfMonth - 1;
 
 const lastDayOfPreviousMonth =
   currentMonth === 0
