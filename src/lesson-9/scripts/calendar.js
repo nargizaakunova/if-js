@@ -16,13 +16,20 @@ const month = currentMonth === 0 ? 11 : currentMonth;
 const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // 31 (July)
 const firstDayOfMonth = new Date(currentYear, currentMonth, 1); // 1 (July)
 const daysInWeek = 7; // 7 days in a week
+
 const dayOfWeek =
   currentMonth === 0
-    ? firstDayOfMonth.getDay() - 1 + daysInWeek
+    ? firstDayOfMonth.getDay() === 0
+      ? 6
+      : firstDayOfMonth.getDay() - 1
     : firstDayOfMonth.getDay() === 0
     ? 6
     : firstDayOfMonth.getDay() - 1;
-const lastDayOfPreviousMonth = new Date(year, month, 0).getDate(); // 30 (June)
+
+const lastDayOfPreviousMonth =
+  currentMonth === 0
+    ? new Date(year, month, 0).getDate() + 1
+    : new Date(year, month, 0).getDate(); // 30 (June)
 
 const checkIn = 2;
 const checkOut = 7;
@@ -31,7 +38,7 @@ const today = new Date().getDate();
 function getCalendarForCurrentMonth(daysInMonth, daysInWeek, dayOfWeek) {
   const result = [];
   let currentWeek = [];
-  if (dayOfWeek > daysInWeek) {
+  if (dayOfWeek >= daysInWeek) {
     throw new Error('Day should be less than numbers of days in a week');
   }
 
@@ -73,7 +80,7 @@ function getCalendarForCurrentMonth(daysInMonth, daysInWeek, dayOfWeek) {
 const calendarForCurrentMonth = getCalendarForCurrentMonth(
   lastDayOfMonth,
   daysInWeek,
-  dayOfWeek,
+  dayOfWeek
 );
 console.log(calendarForCurrentMonth);
 
