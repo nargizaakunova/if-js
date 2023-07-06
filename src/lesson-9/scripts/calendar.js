@@ -2,7 +2,7 @@ console.log('------------------------Calendar-----------------');
 
 // July 2023
 const date = new Date();
-const currentMonth = date.getMonth(); // 6 (July)
+const currentMonth = date.getMonth(); // 6 (July) ---> 0 based
 const currentYear = date.getFullYear(); // 2023
 
 const year =
@@ -80,7 +80,7 @@ function getCalendarForCurrentMonth(daysInMonth, daysInWeek, dayOfWeek) {
 const calendarForCurrentMonth = getCalendarForCurrentMonth(
   lastDayOfMonth,
   daysInWeek,
-  dayOfWeek
+  dayOfWeek,
 );
 console.log(calendarForCurrentMonth);
 
