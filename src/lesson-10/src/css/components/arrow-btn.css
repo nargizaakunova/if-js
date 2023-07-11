@@ -1,0 +1,35 @@
+.arrow-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding-left: 2px;
+  background-color: var(--color-stroke);
+  border-radius: 50%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+.arrow-btn:hover {
+  background-color: var(--color-general-white);
+  box-shadow: 2px 0 10px 2px rgba(0, 0, 0, 0.15);
+}
+
+.arrow-btn__img {
+  max-width: 9px;
+  max-height: 21px;
+}
+
+@media (max-width: 480px) {
+  .arrow-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .arrow-btn__img {
+    width: 7px;
+    height: 15px;
+  }
+}

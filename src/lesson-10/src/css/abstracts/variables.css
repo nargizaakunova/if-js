@@ -1,0 +1,65 @@
+:root {
+  --col-width: calc(100% / 12);
+  --unit: 16px;
+  --container-width: 1440px;
+  --section-title-size: 40px;
+  --container-pad-top-btm: 120px;
+  --container-pad-left-right: 104px;
+  --title-mg-bottom: 104px;
+  --image-mg-bottom: 24px;
+  --destination-cards-mg-bottom: 48px;
+  --button-width: 192px;
+  /* button-height with 64px: */
+  --button-pad: 17px;
+  --button-font-size: 24px;
+  --buttons-mg-bottom: 65px;
+  --text-color: #383838;
+  --color-dark-mode-1: #121212;
+  --color-dark-mode-2: #1d1e1f;
+  --color-dark-mode-3: #4d4d4d;
+  --color-stroke: #f3f3f4;
+  --color-secondary-text: #bfbfbf;
+  --color-general-white: #fff;
+  --color-accent-yellow: #f5bd41;
+  --color-general-blue: #10367c;
+  --color-accent-blue: #3077c6;
+  --color-bg-main: #eaf0f9;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --container-width: 100%;
+    --container-pad-left-right: 52px;
+    --container-pad-top-btm: 80px;
+    --title-mg-bottom: 72px;
+    --section-title-size: 34px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --image-mg-bottom: 16px;
+    --button-width: 100px;
+    /* button-height with 48px: */
+    --button-pad: 12px;
+    --button-font-size: 19px;
+    --buttons-mg-bottom: 40px;
+    --destination-cards-mg-bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-title-size: 28px;
+    --container-pad-top-btm: 40px;
+    --container-pad-left-right: 16px;
+    --button-width: 98px;
+    /* button-height with 32px: */
+    --button-pad: 4px;
+    --buttons-mg-bottom: 24px;
+    --col-width: calc(100% / 6);
+    --title-mg-bottom: 32px;
+    --image-mg-bottom: 8px;
+    --destination-cards-mg-bottom: 0;
+  }
+}

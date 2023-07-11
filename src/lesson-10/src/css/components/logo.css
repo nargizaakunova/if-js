@@ -1,0 +1,20 @@
+.logo__img {
+  width: 205px;
+  height: 40px;
+  fill: var(--color-accent-blue);
+}
+
+@media (max-width: 768px) {
+  .logo__img {
+    width: 122px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo__img--mobile {
+    width: 98px;
+    height: 19px;
+    fill: var(--color-general-white);
+  }
+}

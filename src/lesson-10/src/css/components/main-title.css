@@ -1,0 +1,18 @@
+.main-title {
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 59px;
+  letter-spacing: 0.3px;
+  color: var(--color-general-white);
+}
+
+.main-title__break {
+  display: inherit;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 30px;
+    line-height: 35px;
+  }
+}

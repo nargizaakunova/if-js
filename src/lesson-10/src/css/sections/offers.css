@@ -1,0 +1,32 @@
+.offers {
+  order: 2;
+}
+
+.offers__main-title {
+  position: relative;
+}
+
+.offers__main-title::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 4px;
+  background-color: var(--color-accent-yellow);
+  left: 50%;
+  bottom: -22px;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 480px) {
+  .offers__container {
+    padding-top: 24px;
+  }
+
+  .offers__main-title {
+    margin-bottom: 32px;
+  }
+
+  .offers__main-title::after {
+    display: none;
+  }
+}

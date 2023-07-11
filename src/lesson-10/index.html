@@ -2,10 +2,903 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lesson 10</title>
+    <meta
+      name="description"
+      content="This is a webpage about TripHouse, tourism, and fun!"
+    />
+    <meta name="keywords" content="tourism, booking, vacation, resort" />
+    <meta name="author" content="Nargiza Akunova" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TripHouse</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./src/images/content-img/favicon.ico"
+    />
+    <link rel="stylesheet" href="src/css/main.css" />
   </head>
   <body>
-    <h1>Lesson 10</h1>
-    <script src="./scripts/index.js"></script>
+    <main class="_order">
+      <!--Top Section-->
+      <section class="top-section">
+        <div class="container top-section-wrap">
+          <header class="header">
+            <a class="logo header__logo" href="/">
+              <svg class="logo__img header__img">
+                <use href="./src/images/decorative-img/sprite.svg#logo" />
+              </svg>
+            </a>
+            <nav class="menu">
+              <ul class="menu__list">
+                <li class="menu__item">
+                  <a href="#" class="menu__link">Stays</a>
+                </li>
+                <li class="menu__item">
+                  <a href="#" class="menu__link">Attractions</a>
+                </li>
+              </ul>
+              <ul class="menu__btns">
+                <li class="menu__item">
+                  <button
+                    class="menu__btn button--reset"
+                    aria-label="Dark/Light Theme"
+                    type="button"
+                  >
+                    <svg class="menu__btn--theme">
+                      <use
+                        href="./src/images/decorative-img/sprite.svg#theme"
+                      />
+                    </svg>
+                  </button>
+                </li>
+                <li class="menu__item">
+                  <a href="#" class="menu__btn button--reset" aria-label="User">
+                    <svg class="menu__btn--user">
+                      <use href="./src/images/decorative-img/sprite.svg#user" />
+                    </svg>
+                  </a>
+                </li>
+                <li class="menu__item hamburger">
+                  <button
+                    aria-label="menu button"
+                    class="hamburger__btn button--reset"
+                    type="button"
+                  >
+                    <svg class="hamburger__img">
+                      <use
+                        href="./src/images/decorative-img/sprite.svg#hamburger"
+                      />
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          <h1 class="_is-hidden">Find Hotels</h1>
+          <h2 class="main-title top-section__main-title">
+            <span class="main-title__break">Discover stays</span>
+            <span>to live, work or just relax</span>
+          </h2>
+          <!--        Desktop form-->
+          <form class="form top-section__form">
+            <div class="form__field form__field--city">
+              <label
+                class="form__label top__section__label _pad-left"
+                for="city"
+                >Your destination or hotel name</label
+              >
+              <input
+                class="form__input form__input--city"
+                type="text"
+                id="city"
+                name="city"
+                placeholder="New York"
+                title="Select your destination or hotel name"
+              />
+            </div>
+            <div class="form__field form__field--date">
+              <label
+                class="form__label top__section__label _pad-left"
+                for="date"
+                >Check-in &mdash; Check-out</label
+              >
+              <input
+                class="form__input form__input--date"
+                type="text"
+                id="date"
+                name="date"
+                placeholder="Tue 15 Sept &mdash; Sat 19 Sept"
+                title="Choose check-in &mdash; check-out dates"
+              />
+            </div>
+            <div class="form__field form__field--guests">
+              <label
+                class="form__label top__section__label _pad-left"
+                for="guests"
+              ></label>
+              <input
+                class="form__input form__input--guests"
+                type="text"
+                id="guests"
+                name="guests"
+                placeholder="2 Adults — 0 Children — 1 Room"
+                title="Enter number of adults, children, and rooms"
+              />
+            </div>
+            <button
+              class="button button--reset button--active form__button"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+          <!--        Mobile Form/Tablet-->
+          <form class="form-m top-section__form-m">
+            <label class="form-m__label form-m__label--destination">
+              <input
+                class="form__input form__input--m form__input--destination"
+                type="text"
+                id="destination-m"
+                name="destination-m"
+                placeholder="Your destination or hotel name"
+            /></label>
+            <label
+              class="form-m__label form-m__label--check-in"
+              content="Check-in"
+            >
+              <input
+                class="form__input form__input--m form__input--check-in"
+                type="text"
+                id="check-in"
+                name="check-in"
+                placeholder="Tue 15 Sept 2020"
+              />
+            </label>
+            <label
+              class="form-m__label form-m__label--check-out"
+              content="Check-out"
+            >
+              <input
+                class="form__input form__input--m form__input--check-out"
+                type="text"
+                id="check-out"
+                name="check-out"
+                placeholder="Sat 19 Sept 2020"
+              />
+            </label>
+
+            <div class="_grid-row-3">
+              <label
+                class="form-m__label form-m__label--adults"
+                content="Adults"
+              >
+                <input
+                  class="form__input form__input--m form__input--adults"
+                  type="text"
+                  id="adults"
+                  name="adults"
+                  placeholder="2"
+                />
+              </label>
+              <label
+                class="form-m__label form-m__label--children"
+                content="Children"
+              >
+                <input
+                  class="form__input form__input--m form__input--children"
+                  type="text"
+                  id="children"
+                  name="children"
+                  placeholder="0"
+                />
+              </label>
+              <label class="form-m__label form-m__label--rooms" content="Rooms">
+                <input
+                  class="form__input form__input--m form__input--rooms"
+                  type="text"
+                  id="rooms"
+                  name="rooms"
+                  placeholder="1"
+                />
+              </label>
+            </div>
+            <button
+              class="button button--reset button--active form__button--m"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+
+          <div class="download top-section__download">
+            <!--            Download links' initialization:-->
+            <svg class="_is-hidden" xmlns="http://www.w3.org/2000/svg">
+              <symbol id="google-play" viewBox="0 0 135 40">
+                <path
+                  fill="#000"
+                  d="M130 40H5c-2.75 0-5-2.25-5-5V5c0-2.75 2.25-5 5-5h125c2.75 0 5 2.25 5 5v30c0 2.75-2.25 5-5 5Z"
+                />
+                <path
+                  fill="#A6A6A6"
+                  d="M130 .8a4.2 4.2 0 0 1 4.2 4.2v30a4.2 4.2 0 0 1-4.2 4.2H5A4.2 4.2 0 0 1 .8 35V5A4.2 4.2 0 0 1 5 .8h125Zm0-.8H5C2.25 0 0 2.25 0 5v30c0 2.75 2.25 5 5 5h125c2.75 0 5-2.25 5-5V5c0-2.75-2.25-5-5-5Z"
+                />
+                <path
+                  fill="#fff"
+                  stroke="#fff"
+                  stroke-miterlimit="10"
+                  stroke-width=".2"
+                  d="M47.42 10.24c0 .84-.25 1.51-.75 2-.56.59-1.3.89-2.2.89-.87 0-1.6-.3-2.21-.9-.61-.6-.91-1.35-.91-2.23 0-.89.3-1.63.91-2.23.61-.6 1.34-.9 2.21-.9.43 0 .84.08 1.23.25.39.17.7.39.94.67l-.53.53c-.4-.47-.94-.71-1.64-.71-.63 0-1.18.22-1.64.67-.46.44-.69 1.02-.69 1.73s.23 1.29.69 1.73c.46.44 1.01.67 1.64.67.67 0 1.23-.22 1.68-.67.29-.29.46-.7.5-1.22h-2.18V9.8h2.91c.02.15.04.3.04.44ZM52.03 7.74H49.3v1.9h2.46v.72H49.3v1.9h2.73V13h-3.5V7h3.5v.74ZM55.28 13h-.77V7.74h-1.68V7h4.12v.74h-1.68V13h.01ZM59.94 13V7h.77v6h-.77ZM64.13 13h-.77V7.74h-1.68V7h4.12v.74h-1.68V13h.01ZM73.61 12.22c-.59.61-1.32.91-2.2.91-.88 0-1.61-.3-2.2-.91-.59-.61-.88-1.35-.88-2.22 0-.87.29-1.62.88-2.22.59-.61 1.32-.91 2.2-.91.87 0 1.6.3 2.2.91.59.61.89 1.35.89 2.22-.01.88-.3 1.62-.89 2.22Zm-3.83-.5c.44.45.99.67 1.63.67.64 0 1.19-.22 1.63-.67.44-.45.67-1.02.67-1.72s-.22-1.27-.67-1.72c-.44-.45-.99-.67-1.63-.67-.64 0-1.19.22-1.63.67-.44.45-.67 1.02-.67 1.72s.23 1.27.67 1.72ZM75.58 13V7h.94l2.92 4.67h.03l-.03-1.16V7h.77v6h-.8l-3.05-4.89h-.03l.03 1.16V13h-.78Z"
+                />
+                <path
+                  fill="#fff"
+                  d="M68.14 21.75c-2.35 0-4.27 1.79-4.27 4.25 0 2.45 1.92 4.25 4.27 4.25 2.35 0 4.27-1.8 4.27-4.25 0-2.46-1.92-4.25-4.27-4.25Zm0 6.83c-1.29 0-2.4-1.06-2.4-2.58 0-1.53 1.11-2.58 2.4-2.58 1.29 0 2.4 1.05 2.4 2.58 0 1.52-1.12 2.58-2.4 2.58Zm-9.32-6.83c-2.35 0-4.27 1.79-4.27 4.25 0 2.45 1.92 4.25 4.27 4.25 2.35 0 4.27-1.8 4.27-4.25 0-2.46-1.92-4.25-4.27-4.25Zm0 6.83c-1.29 0-2.4-1.06-2.4-2.58 0-1.53 1.11-2.58 2.4-2.58 1.29 0 2.4 1.05 2.4 2.58 0 1.52-1.11 2.58-2.4 2.58Zm-11.08-5.52v1.8h4.32c-.13 1.01-.47 1.76-.98 2.27-.63.63-1.61 1.32-3.33 1.32-2.66 0-4.74-2.14-4.74-4.8 0-2.66 2.08-4.8 4.74-4.8 1.43 0 2.48.56 3.25 1.29l1.27-1.27c-1.08-1.03-2.51-1.82-4.53-1.82-3.64 0-6.7 2.96-6.7 6.61 0 3.64 3.06 6.61 6.7 6.61 1.97 0 3.45-.64 4.61-1.85 1.19-1.19 1.56-2.87 1.56-4.22 0-.42-.03-.81-.1-1.13h-6.07v-.01Zm45.31 1.4c-.35-.95-1.43-2.71-3.64-2.71-2.19 0-4.01 1.72-4.01 4.25 0 2.38 1.8 4.25 4.22 4.25 1.95 0 3.08-1.19 3.54-1.88l-1.45-.97c-.48.71-1.14 1.18-2.09 1.18s-1.63-.44-2.06-1.29l5.69-2.35-.2-.48Zm-5.8 1.42c-.05-1.64 1.27-2.48 2.22-2.48.74 0 1.37.37 1.58.9l-3.8 1.58ZM82.63 30h1.87V17.5h-1.87V30Zm-3.06-7.3h-.07c-.42-.5-1.22-.95-2.24-.95-2.13 0-4.08 1.87-4.08 4.27 0 2.38 1.95 4.24 4.08 4.24 1.01 0 1.82-.45 2.24-.97h.06v.61c0 1.63-.87 2.5-2.27 2.5-1.14 0-1.85-.82-2.14-1.51l-1.63.68c.47 1.13 1.71 2.51 3.77 2.51 2.19 0 4.04-1.29 4.04-4.43v-7.64h-1.77v.69h.01Zm-2.15 5.88c-1.29 0-2.37-1.08-2.37-2.56 0-1.5 1.08-2.59 2.37-2.59 1.27 0 2.27 1.1 2.27 2.59.01 1.48-.99 2.56-2.27 2.56Zm24.39-11.08h-4.47V30h1.87v-4.74h2.61c2.07 0 4.1-1.5 4.1-3.88s-2.05-3.88-4.11-3.88Zm.04 6.02H99.2v-4.29h2.65c1.4 0 2.19 1.16 2.19 2.14 0 .98-.79 2.15-2.19 2.15Zm11.54-1.79c-1.35 0-2.75.6-3.33 1.91l1.66.69c.35-.69 1.01-.92 1.7-.92.96 0 1.95.58 1.96 1.61v.13c-.34-.19-1.06-.48-1.95-.48-1.79 0-3.6.98-3.6 2.81 0 1.67 1.46 2.75 3.1 2.75 1.25 0 1.95-.56 2.38-1.22h.06v.97h1.8v-4.79c.01-2.22-1.65-3.46-3.78-3.46Zm-.23 6.85c-.61 0-1.46-.31-1.46-1.06 0-.96 1.06-1.33 1.98-1.33.82 0 1.21.18 1.7.42a2.257 2.257 0 0 1-2.22 1.97ZM123.74 22l-2.14 5.42h-.06L119.32 22h-2.01l3.33 7.58-1.9 4.21h1.95L125.82 22h-2.08Zm-16.8 8h1.87V17.5h-1.87V30Z"
+                />
+                <path
+                  fill="url(#a)"
+                  d="M10.44 7.54c-.29.31-.46.79-.46 1.4v22.12c0 .62.17 1.1.46 1.4l.07.07L22.9 20.15v-.3L10.51 7.47l-.07.07Z"
+                />
+                <path
+                  fill="url(#b)"
+                  d="m27.03 24.28-4.13-4.13v-.3l4.13-4.13.09.05 4.89 2.78c1.4.79 1.4 2.09 0 2.89l-4.89 2.78-.09.06Z"
+                />
+                <path
+                  fill="url(#c)"
+                  d="M27.12 24.22 22.9 20 10.44 32.46c.46.49 1.22.55 2.08.06l14.6-8.3Z"
+                />
+                <path
+                  fill="url(#d)"
+                  d="m27.12 15.78-14.61-8.3c-.86-.49-1.62-.43-2.08.06L22.9 20l4.22-4.22Z"
+                />
+                <path
+                  fill="#000"
+                  d="m27.03 24.13-14.52 8.25c-.81.46-1.54.43-2 .01l-.07.07.07.07c.47.42 1.19.45 2-.01l14.61-8.3-.09-.09Z"
+                  opacity=".2"
+                />
+                <path
+                  fill="#000"
+                  d="M10.44 32.32c-.29-.31-.46-.79-.46-1.4v.15c0 .62.17 1.1.46 1.4l.07-.07-.07-.08ZM32.01 21.3l-4.99 2.83.09.09L32 21.44c.7-.4 1.05-.92 1.05-1.44-.05.47-.4.94-1.04 1.3Z"
+                  opacity=".12"
+                />
+                <path
+                  fill="#fff"
+                  d="m12.51 7.62 19.5 11.08c.63.36.99.82 1.05 1.3 0-.52-.35-1.05-1.05-1.44L12.51 7.48c-1.4-.79-2.54-.13-2.54 1.47v.15c0-1.61 1.15-2.27 2.54-1.48Z"
+                  opacity=".25"
+                />
+                <defs>
+                  <linearGradient
+                    id="a"
+                    x1="21.8"
+                    x2="5.017"
+                    y1="8.71"
+                    y2="25.492"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#00A0FF" />
+                    <stop offset=".007" stop-color="#00A1FF" />
+                    <stop offset=".26" stop-color="#00BEFF" />
+                    <stop offset=".512" stop-color="#00D2FF" />
+                    <stop offset=".76" stop-color="#00DFFF" />
+                    <stop offset="1" stop-color="#00E3FF" />
+                  </linearGradient>
+                  <linearGradient
+                    id="b"
+                    x1="33.834"
+                    x2="9.638"
+                    y1="20.001"
+                    y2="20.001"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#FFE000" />
+                    <stop offset=".409" stop-color="#FFBD00" />
+                    <stop offset=".775" stop-color="orange" />
+                    <stop offset="1" stop-color="#FF9C00" />
+                  </linearGradient>
+                  <linearGradient
+                    id="c"
+                    x1="24.827"
+                    x2="2.069"
+                    y1="22.296"
+                    y2="45.054"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#FF3A44" />
+                    <stop offset="1" stop-color="#C31162" />
+                  </linearGradient>
+                  <linearGradient
+                    id="d"
+                    x1="7.297"
+                    x2="17.46"
+                    y1=".176"
+                    y2="10.339"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#32A071" />
+                    <stop offset=".069" stop-color="#2DA771" />
+                    <stop offset=".476" stop-color="#15CF74" />
+                    <stop offset=".801" stop-color="#06E775" />
+                    <stop offset="1" stop-color="#00F076" />
+                  </linearGradient>
+                </defs>
+              </symbol>
+              <symbol id="apple-store" viewBox="0 0 120 40">
+                <path
+                  fill="#A6A6A6"
+                  d="M110.135 0H9.535c-.367 0-.73 0-1.095.002-.306.002-.61.008-.919.013C6.85.023 6.18.082 5.517.192a6.665 6.665 0 0 0-1.9.627A6.438 6.438 0 0 0 .193 5.522a12.993 12.993 0 0 0-.179 2.002c-.01.306-.01.614-.015.92V31.56c.005.31.006.61.015.921.008.671.068 1.34.18 2.002.11.663.32 1.306.624 1.905.303.598.701 1.143 1.179 1.614.473.477 1.019.875 1.618 1.179a6.7 6.7 0 0 0 1.901.63c.663.11 1.333.168 2.004.177.31.007.613.011.919.011.366.002.728.002 1.095.002h100.6c.359 0 .724 0 1.084-.002.304 0 .617-.004.922-.01.67-.01 1.338-.068 2-.178a6.805 6.805 0 0 0 1.908-.63A6.293 6.293 0 0 0 117.666 38a6.405 6.405 0 0 0 1.182-1.614c.302-.6.51-1.242.619-1.905.111-.661.173-1.33.185-2.002.004-.31.004-.61.004-.921.008-.364.008-.725.008-1.094V9.536c0-.366 0-.73-.008-1.092 0-.306 0-.614-.004-.92a13.57 13.57 0 0 0-.185-2.002 6.648 6.648 0 0 0-.619-1.904 6.469 6.469 0 0 0-2.799-2.8 6.77 6.77 0 0 0-1.908-.627c-.661-.11-1.33-.169-2-.176-.305-.005-.618-.011-.922-.013-.36-.002-.725-.002-1.084-.002Z"
+                />
+                <path
+                  fill="#000"
+                  d="M8.445 39.125c-.305 0-.602-.004-.904-.01a12.669 12.669 0 0 1-1.87-.164 5.88 5.88 0 0 1-1.656-.548 5.403 5.403 0 0 1-1.397-1.016 5.32 5.32 0 0 1-1.02-1.397 5.722 5.722 0 0 1-.544-1.657 12.41 12.41 0 0 1-.166-1.875c-.007-.21-.015-.913-.015-.913v-23.1s.009-.692.015-.895a12.37 12.37 0 0 1 .165-1.872 5.755 5.755 0 0 1 .544-1.662c.26-.518.603-.99 1.015-1.398A5.565 5.565 0 0 1 5.667 1.05C6.287.95 6.915.895 7.543.887l.902-.012h102.769l.913.013a12.37 12.37 0 0 1 1.858.162 5.933 5.933 0 0 1 1.671.548 5.589 5.589 0 0 1 2.415 2.42 5.74 5.74 0 0 1 .535 1.65c.104.623.162 1.254.174 1.886.003.284.003.588.003.89.008.375.008.732.008 1.092v20.929c0 .363 0 .718-.008 1.075 0 .325 0 .623-.004.93-.011.62-.069 1.24-.171 1.853a5.715 5.715 0 0 1-.54 1.67c-.263.513-.606.98-1.015 1.386-.409.414-.881.759-1.4 1.022a5.852 5.852 0 0 1-1.668.55c-.618.101-1.243.156-1.869.163-.293.007-.599.011-.897.011l-1.084.002-101.69-.002Z"
+                />
+                <path
+                  fill="#fff"
+                  d="M24.769 20.3a4.948 4.948 0 0 1 2.356-4.151 5.065 5.065 0 0 0-3.99-2.158c-1.68-.176-3.308 1.005-4.164 1.005-.872 0-2.19-.988-3.608-.958a5.315 5.315 0 0 0-4.473 2.727c-1.934 3.349-.492 8.27 1.361 10.977.927 1.325 2.01 2.805 3.428 2.753 1.387-.058 1.905-.885 3.58-.885 1.658 0 2.144.885 3.59.852 1.489-.025 2.426-1.332 3.32-2.67a10.96 10.96 0 0 0 1.52-3.092 4.782 4.782 0 0 1-2.92-4.4ZM22.037 12.211a4.872 4.872 0 0 0 1.115-3.49 4.957 4.957 0 0 0-3.208 1.66 4.634 4.634 0 0 0-1.143 3.36 4.099 4.099 0 0 0 3.236-1.53ZM42.302 27.14H37.57l-1.137 3.356h-2.005l4.484-12.418h2.083l4.483 12.418h-2.039l-1.136-3.356Zm-4.243-1.55h3.752l-1.85-5.446h-.051l-1.85 5.447ZM55.16 25.97c0 2.813-1.506 4.62-3.779 4.62a3.07 3.07 0 0 1-2.848-1.583h-.043v4.484H46.63V21.442h1.8v1.506h.033a3.212 3.212 0 0 1 2.883-1.6c2.298 0 3.813 1.816 3.813 4.622Zm-1.91 0c0-1.833-.948-3.038-2.393-3.038-1.42 0-2.375 1.23-2.375 3.038 0 1.824.955 3.046 2.375 3.046 1.445 0 2.392-1.197 2.392-3.046ZM65.124 25.97c0 2.813-1.505 4.62-3.778 4.62a3.07 3.07 0 0 1-2.848-1.583h-.043v4.484h-1.859V21.442h1.799v1.506h.034a3.212 3.212 0 0 1 2.883-1.6c2.298 0 3.813 1.816 3.813 4.622Zm-1.91 0c0-1.833-.947-3.038-2.392-3.038-1.42 0-2.375 1.23-2.375 3.038 0 1.824.955 3.046 2.375 3.046 1.445 0 2.392-1.197 2.392-3.046ZM71.71 27.036c.138 1.232 1.334 2.04 2.97 2.04 1.566 0 2.693-.808 2.693-1.919 0-.964-.68-1.54-2.29-1.936l-1.609-.388c-2.28-.55-3.339-1.617-3.339-3.348 0-2.142 1.867-3.614 4.519-3.614 2.624 0 4.423 1.472 4.483 3.614h-1.876c-.112-1.239-1.136-1.987-2.634-1.987-1.497 0-2.521.757-2.521 1.858 0 .878.654 1.395 2.255 1.79l1.368.336c2.548.603 3.606 1.626 3.606 3.443 0 2.323-1.85 3.778-4.793 3.778-2.754 0-4.614-1.42-4.734-3.667h1.902ZM83.346 19.3v2.142h1.722v1.472h-1.722v4.991c0 .776.345 1.137 1.102 1.137.204-.004.408-.018.611-.043v1.463c-.34.064-.686.092-1.032.086-1.833 0-2.548-.689-2.548-2.444v-5.19h-1.316v-1.472h1.316V19.3h1.867ZM86.065 25.97c0-2.849 1.678-4.639 4.294-4.639 2.625 0 4.295 1.79 4.295 4.639 0 2.856-1.661 4.639-4.295 4.639-2.633 0-4.294-1.783-4.294-4.64Zm6.695 0c0-1.954-.895-3.108-2.401-3.108-1.506 0-2.4 1.163-2.4 3.108 0 1.962.894 3.106 2.4 3.106 1.506 0 2.401-1.144 2.401-3.106ZM96.186 21.442h1.772v1.541h.043a2.16 2.16 0 0 1 2.178-1.635c.214-.001.428.022.637.07v1.737a2.594 2.594 0 0 0-.835-.112 1.872 1.872 0 0 0-1.937 2.083v5.37h-1.858v-9.053ZM109.384 27.837c-.25 1.643-1.85 2.771-3.898 2.771-2.634 0-4.269-1.764-4.269-4.595 0-2.84 1.644-4.682 4.191-4.682 2.505 0 4.08 1.72 4.08 4.466v.637h-6.395v.112a2.353 2.353 0 0 0 .639 1.832 2.363 2.363 0 0 0 1.797.732 2.046 2.046 0 0 0 2.091-1.273h1.764Zm-6.282-2.702h4.526a2.166 2.166 0 0 0-.608-1.634 2.168 2.168 0 0 0-1.612-.664 2.293 2.293 0 0 0-2.306 2.298ZM37.826 8.731a2.64 2.64 0 0 1 2.808 2.965c0 1.906-1.03 3.002-2.808 3.002h-2.155V8.73h2.155Zm-1.228 5.123h1.125a1.876 1.876 0 0 0 1.968-2.146 1.882 1.882 0 0 0-1.968-2.134h-1.125v4.28ZM41.68 12.444a2.133 2.133 0 1 1 4.248 0 2.134 2.134 0 1 1-4.247 0Zm3.334 0c0-.976-.439-1.546-1.208-1.546-.773 0-1.207.57-1.207 1.546 0 .984.434 1.55 1.207 1.55.77 0 1.208-.57 1.208-1.55ZM51.573 14.698h-.922l-.93-3.316h-.07l-.927 3.316h-.913l-1.242-4.503h.902l.806 3.436h.067l.925-3.436h.853l.926 3.436h.07l.803-3.436h.889l-1.237 4.503ZM53.853 10.195h.856v.715h.066a1.349 1.349 0 0 1 1.344-.802 1.466 1.466 0 0 1 1.559 1.675v2.915h-.889v-2.692c0-.724-.314-1.084-.972-1.084a1.034 1.034 0 0 0-1.075 1.142v2.634h-.889v-4.503ZM59.094 8.437h.888v6.26h-.888v-6.26ZM61.218 12.444a2.134 2.134 0 1 1 4.247 0 2.133 2.133 0 1 1-4.247 0Zm3.333 0c0-.976-.439-1.546-1.208-1.546-.773 0-1.207.57-1.207 1.546 0 .984.434 1.55 1.207 1.55.77 0 1.208-.57 1.208-1.55ZM66.4 13.424c0-.81.604-1.277 1.676-1.344l1.22-.07v-.389c0-.476-.315-.744-.922-.744-.497 0-.84.182-.939.5h-.86c.09-.773.818-1.27 1.84-1.27 1.128 0 1.765.563 1.765 1.514v3.077h-.855v-.633h-.07a1.515 1.515 0 0 1-1.353.707 1.361 1.361 0 0 1-1.501-1.348Zm2.895-.384v-.377l-1.1.07c-.62.042-.9.253-.9.65 0 .405.351.641.834.641a1.064 1.064 0 0 0 1.166-.984ZM71.348 12.444c0-1.422.732-2.324 1.87-2.324a1.483 1.483 0 0 1 1.38.79h.067V8.437h.888v6.26h-.851v-.71h-.07a1.563 1.563 0 0 1-1.415.785c-1.145 0-1.869-.901-1.869-2.328Zm.918 0c0 .956.45 1.53 1.203 1.53.75 0 1.212-.583 1.212-1.526 0-.938-.468-1.53-1.212-1.53-.748 0-1.203.58-1.203 1.527ZM79.23 12.444a2.134 2.134 0 1 1 4.247 0 2.134 2.134 0 1 1-4.247 0Zm3.333 0c0-.976-.439-1.546-1.208-1.546-.772 0-1.207.57-1.207 1.546 0 .984.435 1.55 1.207 1.55.77 0 1.208-.57 1.208-1.55ZM84.67 10.195h.855v.715h.066a1.348 1.348 0 0 1 1.344-.802 1.466 1.466 0 0 1 1.559 1.675v2.915h-.889v-2.692c0-.724-.314-1.084-.972-1.084a1.034 1.034 0 0 0-1.075 1.142v2.634h-.889v-4.503ZM93.515 9.074v1.142h.976v.748h-.976v2.315c0 .472.195.679.637.679.113 0 .226-.008.339-.02v.74c-.16.028-.322.043-.484.045-.988 0-1.382-.348-1.382-1.216v-2.543h-.714v-.749h.715V9.074h.89ZM95.705 8.437h.88v2.482h.07a1.386 1.386 0 0 1 1.374-.807 1.485 1.485 0 0 1 1.55 1.679v2.907h-.889V12.01c0-.72-.335-1.084-.963-1.084a1.053 1.053 0 0 0-1.134 1.142v2.63h-.888v-6.26ZM104.761 13.482a1.823 1.823 0 0 1-1.951 1.303 2.047 2.047 0 0 1-2.08-2.324 2.083 2.083 0 0 1 1.212-2.172 2.08 2.08 0 0 1 .864-.181c1.253 0 2.009.856 2.009 2.27v.31h-3.18v.05a1.191 1.191 0 0 0 1.199 1.29 1.08 1.08 0 0 0 1.072-.546h.855Zm-3.126-1.451h2.275a1.09 1.09 0 0 0-1.109-1.167 1.151 1.151 0 0 0-1.166 1.167Z"
+                />
+              </symbol>
+            </svg>
+            <!--            Using -->
+            <a href="#" class="download__btn button--reset">
+              <svg class="download__btn--google-play">
+                <use href="#google-play" />
+              </svg>
+            </a>
+            <a href="#" class="download__btn button--reset">
+              <svg class="download__btn--apple-store">
+                <use href="#apple-store" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!--What do we offer-->
+      <section class="container offers offers__container _is-centered">
+        <h2 class="title offers__main-title">What do we offer</h2>
+        <ul class="cards offers__cards">
+          <li class="col-lg-3 col-md-6 col-sm-6 offer">
+            <svg class="offer__img">
+              <use href="./src/images/decorative-img/sprite.svg#headset" />
+            </svg>
+            <h3 class="offer__title">Support 24/7</h3>
+          </li>
+          <li class="col-lg-3 col-md-6 col-sm-6 offer">
+            <svg class="offer__img">
+              <use href="./src/images/decorative-img/sprite.svg#forum" />
+            </svg>
+            <h3 class="offer__title">Communicate directly</h3>
+          </li>
+          <li class="col-lg-3 col-md-6 col-sm-6 offer">
+            <svg class="offer__img">
+              <use href="./src/images/decorative-img/sprite.svg#devices" />
+            </svg>
+            <h3 class="offer__title">Book online</h3>
+          </li>
+          <li class="col-lg-3 col-md-6 col-sm-6 offer">
+            <svg class="offer__img">
+              <use href="./src/images/decorative-img/sprite.svg#thumbs-up" />
+            </svg>
+            <h3 class="offer__title">Real guest reviews</h3>
+          </li>
+        </ul>
+      </section>
+      <!--Homes guests loves-->
+      <section class="homes">
+        <div class="container homes__container">
+          <h2 class="title homes__main-title">Homes guests loves</h2>
+          <div class="homes__wrapper">
+            <ul class="cards homes__cards">
+              <li class="col-lg-3 col-md-6 col-sm-3 card home__card home">
+                <div class="home__wrapper">
+                  <img
+                    class="home__img"
+                    src="./src/images/content-img/homes-1.png"
+                    alt="Hotel Leopold"
+                  />
+                  <h3 class="home__title">Hotel Leopold</h3>
+                  <p class="home__location">Saint Petersburg, Russia</p>
+                </div>
+              </li>
+              <li class="col-lg-3 col-md-6 col-sm-3 card home__card home">
+                <div class="home__wrapper">
+                  <img
+                    class="home__img"
+                    src="./src/images/content-img/homes-2.png"
+                    alt="Apartment Sunshine"
+                  />
+                  <h3 class="home__title">Apartment Sunshine</h3>
+                  <p class="home__location">Santa Cruz de Tenerife, Spain</p>
+                </div>
+              </li>
+              <li class="col-lg-3 col-md-6 col-sm-3 card home__card home">
+                <div class="home__wrapper">
+                  <img
+                    class="home__img"
+                    src="./src/images/content-img/homes-3.png"
+                    alt="Villa Kunerad"
+                  />
+                  <h3 class="home__title">Villa Kunerad</h3>
+                  <p class="home__location">Vysokie Tatry, Slowakia</p>
+                </div>
+              </li>
+              <li class="col-lg-3 col-md-6 col-sm-3 card home__card home">
+                <div class="home__wrapper">
+                  <img
+                    class="home__img"
+                    src="./src/images/content-img/homes-4.png"
+                    alt="Hostel Friendship"
+                  />
+                  <h3 class="home__title">Hostel Friendship</h3>
+                  <p class="home__location">Berlin, Germany</p>
+                </div>
+              </li>
+            </ul>
+            <button
+              aria-label="Next"
+              class="button--reset arrow-btn homes__arrow-btn"
+              type="button"
+            >
+              <svg class="arrow-btn__img">
+                <use
+                  href="./src/images/decorative-img/sprite.svg#arrow-right"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!--The best destinations-->
+      <section class="destinations">
+        <div class="container destinations__container">
+          <h2 class="title destinations__main-title">The best destinations</h2>
+          <div class="destinations__btns">
+            <button
+              class="button button--reset button--active destinations__button"
+              type="button"
+            >
+              Regions
+            </button>
+            <button
+              class="button button--standard button--reset button--m destinations__button"
+              type="button"
+            >
+              Cities
+            </button>
+            <!--Desktop 3rd btn-->
+            <button
+              class="button button--standard button--reset destinations__button destinations__button--places"
+              type="button"
+            >
+              Places of interest
+            </button>
+            <!--Mobile 3rd btn-->
+            <button
+              class="button button--standard button--reset button--m destinations__button destinations__button--places-m"
+              type="button"
+            >
+              Places
+            </button>
+          </div>
+          <div class="destinations__wrapper">
+            <ul class="cards destinations__cards">
+              <li
+                class="col-lg-3 col-md-6 col-sm-3 card destination__card destination"
+              >
+                <div class="destination__wrapper">
+                  <div class="destination__img-wrapper">
+                    <button
+                      class="button button--reset button--card-type destination__button--book-now"
+                      type="button"
+                    >
+                      Book now
+                    </button>
+                    <img
+                      class="destination__img"
+                      src="./src/images/content-img/destination-1.png"
+                      alt="Maldives"
+                    />
+                  </div>
+                  <h3 class="destination__title">Maldives</h3>
+                </div>
+              </li>
+              <li
+                class="col-lg-3 col-md-6 col-sm-3 card destination__card destination"
+              >
+                <div class="destination__wrapper">
+                  <div class="destination__img-wrapper">
+                    <button
+                      class="button button--reset button--card-type destination__button--book-now"
+                      type="button"
+                    >
+                      Book now
+                    </button>
+                    <img
+                      class="destination__img"
+                      src="./src/images/content-img/destination-2.png"
+                      alt="Spain"
+                    />
+                  </div>
+                  <h3 class="destination__title">Spain</h3>
+                </div>
+              </li>
+              <li
+                class="col-lg-3 col-md-6 col-sm-3 card destination__card destination"
+              >
+                <div class="destination__wrapper">
+                  <div class="destination__img-wrapper">
+                    <button
+                      class="button button--reset button--card-type destination__button--book-now"
+                      type="button"
+                    >
+                      Book now
+                    </button>
+                    <img
+                      class="destination__img"
+                      src="./src/images/content-img/destination-3.png"
+                      alt="Norway"
+                    />
+                  </div>
+                  <h3 class="destination__title">Norway</h3>
+                </div>
+              </li>
+              <li
+                class="col-lg-3 col-md-6 col-sm-3 card destination__card destination"
+              >
+                <div class="destination__wrapper">
+                  <div class="destination__img-wrapper">
+                    <button
+                      class="button button--reset button--card-type destination__button--book-now"
+                      type="button"
+                    >
+                      Book now
+                    </button>
+                    <img
+                      class="destination__img"
+                      src="./src/images/content-img/destination-4.png"
+                      alt="Island"
+                    />
+                  </div>
+                  <h3 class="destination__title">Island</h3>
+                </div>
+              </li>
+            </ul>
+            <button
+              aria-label="Next"
+              class="button--reset arrow-btn destinations__arrow-btn"
+              type="button"
+            >
+              <svg class="arrow-btn__img">
+                <use
+                  href="./src/images/decorative-img/sprite.svg#arrow-right"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!--Sign Up Form-->
+      <section class="sign-up container sign-up__container">
+        <!--Desktop-->
+        <div class="sign-up__wrapper _desktop">
+          <div class="sign-up__img-wrapper">
+            <img
+              class="sign-up__img"
+              src="./src/images/decorative-img/sign-up-user.svg"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+          <div class="sign-up__body">
+            <h3 class="sign-up__title">
+              Sign up and get 20% off your first booking
+            </h3>
+            <button
+              class="button button--reset button--action-type sign-up__button"
+              type="button"
+            >
+              Sign up
+            </button>
+          </div>
+          <button
+            aria-label="close"
+            class="button--reset sign-up__close-btn"
+            type="button"
+          >
+            <svg class="sign-up__close-img" aria-label="Close">
+              <use href="./src/images/decorative-img/sprite.svg#close-btn" />
+            </svg>
+          </button>
+        </div>
+        <!--Mobile-->
+        <div class="sign-up__wrapper _mobile">
+          <button class="button--reset sign-up__close-btn--m" type="button">
+            <svg class="sign-up__close-img" aria-label="Close">
+              <use href="./src/images/decorative-img/sprite.svg#close-btn" />
+            </svg>
+          </button>
+          <img
+            class="sign-up__logo"
+            src="./src/images/content-img/logo.svg"
+            alt="Logo"
+          />
+          <h3 class="sign-up__title sign-up__title--m">
+            Sign up in the app and get 20% off your first booking
+          </h3>
+          <a class="sign-up__link--m">Install</a>
+        </div>
+      </section>
+      <section class="guests">
+        <div class="container guests__container">
+          <h2 class="title guests__main-title">Guests reviews</h2>
+          <div class="guests__wrapper">
+            <ul class="cards guests__cards">
+              <li class="col-lg-4 col-md-6 col-sm-6 guest card">
+                <div class="guest__wrapper">
+                  <div class="guest__img-wrapper">
+                    <img
+                      class="guest__img"
+                      src="./src/images/content-img/guest-1.png"
+                      alt="Ubud Bali Resort&SPA, house with a swimming pool"
+                    />
+                    <p class="guest__price"><span>From</span> 250 USD</p>
+                  </div>
+                  <div class="guest__content">
+                    <div class="guest__header">
+                      <div class="col-lg-8 guest__location">
+                        <h3 class="guest__hotel">Ubud Bali Resort&SPA</h3>
+                        <h4 class="guest__country">Bali, Indonesia</h4>
+                      </div>
+                      <div class="col-lg-4 guest__reviews">
+                        <p class="guest__score">9,4</p>
+                        <p class="guest__review-num">1324 reviews</p>
+                      </div>
+                    </div>
+                    <div class="guest__user">
+                      <img
+                        class="guest__avatar"
+                        src="./src/images/decorative-img/user-pic.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      <div class="guest__info">
+                        <p class="guest__name">Hanna Ivanova</p>
+                        <p class="guest__origin">
+                          <img
+                            class="guest__origin-icon"
+                            src="./src/images/decorative-img/ukraine-flag.svg"
+                            alt="Ukrainian flag"
+                          />
+                          Ukraine
+                        </p>
+                      </div>
+                    </div>
+                    <p class="guest__feedback">
+                      Great location, really pleasant and clean rooms, but the
+                      thing that makes this such a good place to stay are the
+                      staff. All of the people are incredibly helpful and
+                      generous with their time and advice.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-lg-4 col-md-6 col-sm-6 guest card">
+                <div class="guest__wrapper">
+                  <div class="guest__img-wrapper">
+                    <img
+                      class="guest__img"
+                      src="./src/images/content-img/guest-2.png"
+                      alt="Ubud Bali Resort&SPA, house with a swimming pool"
+                    />
+                    <p class="guest__price"><span>From</span> 40 USD</p>
+                  </div>
+                  <div class="guest__content">
+                    <div class="guest__header">
+                      <div class="col-lg-8 guest__location">
+                        <h3 class="guest__hotel">King Kong Hostel</h3>
+                        <h4 class="guest__country">Rotterdam, Netherlands</h4>
+                      </div>
+                      <div class="col-lg-4 guest__reviews">
+                        <p class="guest__score">8,9</p>
+                        <p class="guest__review-num">2016 reviews</p>
+                      </div>
+                    </div>
+                    <div class="guest__user">
+                      <img
+                        class="guest__avatar"
+                        src="./src/images/decorative-img/user-pic.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      <div class="guest__info">
+                        <p class="guest__name">Adam Smith</p>
+                        <p class="guest__origin">
+                          <img
+                            class="guest__origin-icon"
+                            src="./src/images/decorative-img/usa-flag.svg"
+                            alt="USA flag"
+                          />
+                          USA
+                        </p>
+                      </div>
+                    </div>
+                    <p class="guest__feedback">
+                      I've been in this hostel for a month and here is the best
+                      hostel of all Excellent management of excellent and
+                      ethical staff and bedrooms Bathrooms are always clean and
+                      excellent Most importantly, those who work here are kind
+                      and good-natured.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-lg-4 col-md-6 col-sm-6 guest card">
+                <div class="guest__wrapper">
+                  <div class="guest__img-wrapper">
+                    <img
+                      class="guest__img"
+                      src="./src/images/content-img/guest-3.png"
+                      alt="Ubud Bali Resort&SPA, house with a swimming pool"
+                    />
+                    <p class="guest__price"><span>From</span> 100 USD</p>
+                  </div>
+                  <div class="guest__content">
+                    <div class="guest__header">
+                      <div class="col-lg-8 guest__location">
+                        <h3 class="guest__hotel">Rokoko Hotel</h3>
+                        <h4 class="guest__country">Ourika, Marocco</h4>
+                      </div>
+                      <div class="col-lg-4 guest__reviews">
+                        <p class="guest__score">9,1</p>
+                        <p class="guest__review-num">815 reviews</p>
+                      </div>
+                    </div>
+                    <div class="guest__user">
+                      <img
+                        class="guest__avatar"
+                        src="./src/images/decorative-img/user-pic.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      <div class="guest__info">
+                        <p class="guest__name">Anika Messer</p>
+                        <p class="guest__origin">
+                          <img
+                            class="guest__origin-icon"
+                            src="./src/images/decorative-img/germany-flag.svg"
+                            alt="German flag"
+                          />
+                          Germany
+                        </p>
+                      </div>
+                    </div>
+                    <p class="guest__feedback">
+                      Efficient, friendly, professional, and appropriately
+                      attentive. Great hotel in a great location. Easy access to
+                      all the surrounding historical sites. Staff is fantastic.
+                      Will definitely stay at this location during my next stay
+                      in Marocco.
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <button
+              aria-label="Next"
+              class="button--reset arrow-btn guests__arrow-btn"
+              type="button"
+            >
+              <svg class="arrow-btn__img">
+                <use
+                  href="./src/images/decorative-img/sprite.svg#arrow-right"
+                />
+              </svg>
+            </button>
+          </div>
+          <ul class="guests__nav-btns">
+            <li>
+              <button class="button--reset">
+                <svg
+                  class="guests__nav-icon guests__nav-icon--active"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="3.5" stroke="#333333" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button class="button--reset">
+                <svg
+                  class="guests__nav-icon"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="3.5" stroke="#333333" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button class="button--reset">
+                <svg
+                  class="guests__nav-icon"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="3.5" stroke="#333333" />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button class="button--reset">
+                <svg
+                  class="guests__nav-icon"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="3.5" stroke="#333333" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <!--Footer-->
+    <footer class="footer">
+      <div class="container footer__container">
+        <a class="logo footer__logo" href="/">
+          <svg class="logo__img footer__img logo__img--mobile">
+            <use href="./src/images/decorative-img/sprite.svg#logo" />
+          </svg>
+        </a>
+        <div class="footer__row">
+          <div class="col-lg-4 col-md-6 col-sm-2 footer__col">
+            <ul class="footer__list _right">
+              <li class="footer__link footer__link--bold">
+                <a href="#">About</a>
+              </li>
+              <li class="footer__link">
+                <a href="#">How Triphouse works</a>
+              </li>
+              <li class="footer__link"><a href="#">Careers</a></li>
+              <li class="footer__link"><a href="#">Privacy</a></li>
+              <li class="footer__link"><a href="#">Terms</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-2 footer__col">
+            <ul class="footer__list _center">
+              <li class="footer__link footer__link--bold">
+                <a href="#">Property types</a>
+              </li>
+              <li class="footer__link"><a href="#">Guest houses</a></li>
+              <li class="footer__link"><a href="#">Hotels</a></li>
+              <li class="footer__link"><a href="#">Apartments</a></li>
+              <li class="footer__link"><a href="#">Villas</a></li>
+              <li class="footer__link"><a href="#">Holiday homes</a></li>
+              <li class="footer__link"><a href="#">Hostels</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-2 footer__col">
+            <ul class="footer__list _left">
+              <li class="footer__link footer__link--bold">
+                <a href="#">Support</a>
+              </li>
+              <li class="footer__link">
+                <a href="#">Contact Customer Service</a>
+              </li>
+              <li class="footer__link"><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="footer__copyright">
+          &copy; 2022 Triphouse, Inc. All rights reserved
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

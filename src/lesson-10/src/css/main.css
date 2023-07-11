@@ -1,0 +1,34 @@
+@import "./base/normalize.css";
+@import "./base/custom-reset.css";
+@import "./base/typography.css";
+
+@import "./abstracts/variables.css";
+@import "./abstracts/flexbox-grid.css";
+@import "./abstracts/helper-classes.css";
+@import "./abstracts/animations.css";
+
+@import "./components/button.css";
+@import "./components/hamburger.css";
+@import "./components/logo.css";
+@import "./components/menu.css";
+@import "./components/main-title.css";
+@import "./components/title.css";
+@import "./components/container.css";
+@import "./components/arrow-btn.css";
+@import "./components/download-app-btns.css";
+@import "./components/cards.css";
+@import "./components/form-d.css";
+@import "./components/form-m.css";
+@import "./components/home-card.css";
+@import "./components/offer-card.css";
+@import "./components/destination-card.css";
+@import "./components/guest-card.css";
+
+@import "./sections/header.css";
+@import "./sections/top-section.css";
+@import "./sections/offers.css";
+@import "./sections/homes.css";
+@import "./sections/destinations.css";
+@import "./sections/sign-up.css";
+@import "./sections/guests.css";
+@import "./sections/footer.css";
