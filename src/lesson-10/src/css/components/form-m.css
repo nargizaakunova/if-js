@@ -33,7 +33,7 @@
   }
 
   .form-m__label--destination::before {
-    content: "";
+    content: '';
     position: absolute;
     background: url(../../images/decorative-img/magnifyer.svg) no-repeat;
     width: 16px;
@@ -85,7 +85,7 @@
   .form-m__label--adults::after,
   .form-m__label--children::after {
     position: absolute;
-    content: "";
+    content: '';
     width: 1px;
     background-color: var(--color-secondary-text);
     top: 50%;
