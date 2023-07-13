@@ -35,7 +35,7 @@
   .form-m__label--destination::before {
     content: '';
     position: absolute;
-    background: url(../../images/decorative-img/magnifyer.svg) no-repeat;
+    background: url(./../../images/decorative-img/magnifyer.svg) no-repeat;
     width: 16px;
     height: 16px;
     color: black;
