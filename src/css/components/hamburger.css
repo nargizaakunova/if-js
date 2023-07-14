@@ -1,0 +1,24 @@
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .hamburger__btn {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .hamburger__btn:hover {
+    transform: scale(1.1);
+  }
+
+  .hamburger__img {
+    width: 24px;
+    height: 16px;
+  }
+}

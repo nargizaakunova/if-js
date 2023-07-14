@@ -1,0 +1,49 @@
+.offer__img {
+  width: 100%;
+  max-width: 100px;
+  aspect-ratio: 1 /1;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 46px;
+}
+
+.offer__title {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 1024px) {
+  .offer {
+    margin-bottom: calc(var(--unit) * 3);
+  }
+
+  .offer:last-child {
+    margin-bottom: 0;
+  }
+
+  .offer__img {
+    max-width: 85px;
+    margin-bottom: 32px;
+  }
+
+  .offer__title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .offer {
+    margin-bottom: calc(var(--unit) * 2);
+  }
+
+  .offer__img {
+    max-width: 70px;
+    margin-bottom: var(--unit);
+  }
+
+  .offer__title {
+    font-size: 15px;
+    margin-bottom: 0;
+    line-height: 1;
+  }
+}

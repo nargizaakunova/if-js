@@ -1,0 +1,12 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(var(--unit) / -2);
+  margin-left: calc(var(--unit) / -2);
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}

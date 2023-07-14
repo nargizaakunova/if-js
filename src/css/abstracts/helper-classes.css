@@ -1,0 +1,25 @@
+._is-centered {
+  text-align: center;
+}
+
+._is-hidden {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/*For order of sections*/
+._order {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  ._grid-row-3 {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

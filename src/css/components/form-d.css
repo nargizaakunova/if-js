@@ -1,0 +1,62 @@
+.form {
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--color-general-white);
+  border-radius: 8px;
+  max-height: 64px;
+}
+
+.form__field {
+  flex-basis: 25.6%;
+}
+
+.form__field--city {
+  flex-grow: 1;
+}
+
+.form__field--date {
+  flex-basis: 259px;
+}
+
+.form__label {
+  display: inline-block;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-general-white);
+  line-height: 1.16;
+  cursor: pointer;
+}
+
+.form__label._pad-left {
+  padding-left: 23px;
+}
+
+.form__input {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.23;
+  color: var(--text-color);
+  width: 100%;
+  padding: 18px 24px;
+  border-radius: 8px;
+  border: 3px solid transparent;
+  cursor: pointer;
+}
+
+.form__input:focus {
+  outline: none;
+  border: 3px solid var(--color-accent-yellow);
+  box-shadow: 0 0 10px #719ece;
+}
+
+.form__input--date {
+  padding-left: 20px;
+  border: 3px solid var(--color-stroke);
+}
+
+@media (max-width: 1024px) {
+  .form__field {
+    flex-basis: calc((100% - var(--button-width)) / 3);
+  }
+}
