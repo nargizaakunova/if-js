@@ -3,4 +3,3 @@ import createHomesSection from './homes.js';
 
 form();
 createHomesSection();
-

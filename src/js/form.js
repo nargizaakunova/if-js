@@ -16,25 +16,9 @@ export default function form() {
     }
   });
 
-  // // PREVENTING RELOADING of PAGE, FOR BUTTONS + -
-  // document.querySelectorAll('.guest-filter__button').forEach((button) => {
-  //   button.addEventListener('click', () => {
-  //     console.log(123);
-  //   });
-  // });
-  //
-  // // PREVENTING RELOADING of PAGE, FOR Select btn
-  // document
-  //   .querySelector('.guest-filter__select--button')
-  //   .addEventListener('click', () => {
-  //     console.log(321);
-  //   });
+  // FUNCTION COUNTER
+  // function initiateCounter(el, decreaseBtn, increaseBtn, min, max) {}
 
-  // ADULTS LOGIC
-  // CHILDREN LOGIC
-  // const childrenDecreaseBtnEl = document.querySelector(
-  //   '.guest-filter__button--decrement',
-  // );
   const childrenIncreaseBtnEl = document.querySelector(
     '.guest-filter__children--increment',
   );
@@ -49,25 +33,62 @@ export default function form() {
     '.guest-filter__children--increment',
   );
 
-  if (childrenCountEl.textContent === '0') {
+  let currValChildren = childrenCountEl.textContent;
+
+  if (Number(currValChildren) === 0) {
     guestFilterChildrenEl.classList.add('_is-hidden');
     guestFilterSelectEl.classList.add('_is-hidden');
   }
 
+  // INCREASE BTN
   childrenIncreaseBtnEl.addEventListener('click', () => {
     console.log('test');
     const maxNumChildren = 10;
-    if (Number(childrenCountEl.textContent) < maxNumChildren) {
-      childrenCountEl.textContent = (
-        Number(childrenCountEl.textContent) + 1
-      ).toString();
+    if (Number(currValChildren) < maxNumChildren) {
+      childrenIncrementBtnEL.classList.remove('_inactive');
+      childrenIncreaseBtnEl.disabled = false;
+      childrenDecreaseBtnEl.disabled = false;
+      guestFilterChildrenEl.classList.remove('_is-hidden');
+      guestFilterSelectEl.classList.remove('_is-hidden');
+      currValChildren = (Number(currValChildren) + 1).toString();
+      childrenCountEl.textContent = currValChildren;
+      childrenDecreaseBtnEl.classList.remove('_inactive');
     }
-    if (Number(childrenCountEl.textContent) === 10) {
-      childrenIncrementBtnEL.style.color = 'grey';
-      childrenIncrementBtnEL.style.borderColor = 'grey';
+    if (Number(currValChildren) === maxNumChildren) {
+      childrenIncrementBtnEL.classList.add('_inactive');
+      childrenIncreaseBtnEl.disabled = true;
     }
-    guestFilterChildrenEl.classList.remove('_is-hidden');
-    guestFilterSelectEl.classList.remove('_is-hidden');
+  });
+
+  // DECREASE BTN
+  const childrenDecreaseBtnEl = document.querySelector(
+    '.guest-filter__children--decrement',
+  );
+
+  childrenDecreaseBtnEl.classList.add('_inactive');
+  childrenDecreaseBtnEl.classList.add('_inactive');
+
+  childrenDecreaseBtnEl.addEventListener('click', () => {
+    console.log('test');
+    const minNumChildren = 0;
+    if (Number(currValChildren) > minNumChildren) {
+      childrenDecreaseBtnEl.classList.remove('_inactive');
+      childrenDecreaseBtnEl.disabled = false;
+      childrenIncreaseBtnEl.disabled = false;
+      guestFilterChildrenEl.classList.remove('_is-hidden');
+      guestFilterSelectEl.classList.remove('_is-hidden');
+      currValChildren = (Number(currValChildren) - 1).toString();
+      childrenCountEl.textContent = currValChildren;
+      childrenIncrementBtnEL.classList.remove('_inactive');
+      childrenIncrementBtnEL.classList.remove('_inactive');
+    }
+    if (Number(currValChildren) === minNumChildren) {
+      childrenDecreaseBtnEl.classList.add('_inactive');
+      childrenDecreaseBtnEl.classList.add('_inactive');
+      childrenDecreaseBtnEl.disabled = true;
+      guestFilterChildrenEl.classList.add('_is-hidden');
+      guestFilterSelectEl.classList.add('_is-hidden');
+    }
   });
 
   // ROOMS LOGIC
