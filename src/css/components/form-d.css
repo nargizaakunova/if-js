@@ -50,6 +50,85 @@
   box-shadow: 0 0 10px #719ece;
 }
 
+.form__field--guests {
+  position: relative;
+}
+
+.guest-filter {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 259px;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  padding: 22px;
+  margin-top: 12px;
+}
+
+.guest-filter__category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--filter-title-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.guest-filter__title {
+}
+
+.guest-filter__counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.guest-filter__button {
+  padding: 5px 9px;
+  background: none;
+  border: 1px solid var(--color-accent-blue);
+  color: var(--color-accent-blue);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.guest-filter__button--decrement {
+}
+
+.guest-filter__button--increment {
+}
+
+.guest-filter__children {
+  margin-top: 14px;
+  color: #333;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.guest-filter__question {
+  margin-bottom: 12px;
+}
+
+.guest-filter__select--button {
+}
+
+._custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.175 0L5 3.86302L8.825 0L10 1.18927L5 6.25L0 1.18927L1.175 0Z' fill='%233077C6'/%3E%3C/svg%3E%0A")
+    no-repeat right center;
+  padding: 8px 32px 8px 8px;
+  background-size: 15px;
+  border: 1px solid #ccc;
+  background-position-x: 90%;
+}
+
 .form__input--date {
   padding-left: 20px;
   border: 3px solid var(--color-stroke);
