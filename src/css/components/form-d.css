@@ -119,7 +119,7 @@
 
 ._inactive {
   border-color: var(--color-inactive-btn);
-  color: var(--color-inactive-btn) ;
+  color: var(--color-inactive-btn);
 }
 
 ._custom-select {

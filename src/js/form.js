@@ -3,7 +3,40 @@ export default function form() {
   const guestsInputFieldEl = document.querySelector('.form__input--guests');
   const guestFilterEl = document.querySelector('.guest-filter');
 
-  // Get input and click
+  // adults
+  const adultsDecreaseBtnEl = document.querySelector(
+    '.guest-filter__adults--decrement',
+  );
+  const adultsIncreaseBtnEl = document.querySelector(
+    '.guest-filter__adults--increment',
+  );
+  const adultsCountEl = document.querySelector('.guest-filter__count--adults');
+
+  // children
+  const childrenDecreaseBtnEl = document.querySelector(
+    '.guest-filter__children--decrement',
+  );
+  const childrenIncreaseBtnEl = document.querySelector(
+    '.guest-filter__children--increment',
+  );
+  const childrenCountEl = document.querySelector(
+    '.guest-filter__count--children',
+  );
+  const guestFilterChildrenEl = document.querySelector(
+    '.guest-filter__children',
+  );
+  const guestFilterSelectEl = document.querySelector('.guest-filter__select');
+
+  // rooms
+  const roomsDecreaseBtnEl = document.querySelector(
+    '.guest-filter__rooms--decrement',
+  );
+  const roomsIncreaseBtnEl = document.querySelector(
+    '.guest-filter__rooms--increment',
+  );
+  const roomsCountEl = document.querySelector('.guest-filter__count--rooms');
+
+  // Get Guest Input and click
   guestsInputFieldEl.addEventListener('click', () => {
     guestFilterEl.classList.toggle('_is-hidden');
   });
@@ -16,80 +49,83 @@ export default function form() {
     }
   });
 
-  // FUNCTION COUNTER
-  // function initiateCounter(el, decreaseBtn, increaseBtn, min, max) {}
+  // COUNTER GENERIC FUNCTION
+  function initiateCounter({
+    el,
+    decreaseBtn,
+    increaseBtn,
+    min,
+    max,
+    optionalElementsToShow = [],
+  }) {
+    let currVal = el.textContent;
 
-  const childrenIncreaseBtnEl = document.querySelector(
-    '.guest-filter__children--increment',
-  );
-  const childrenCountEl = document.querySelector(
-    '.guest-filter__count--children',
-  );
-  const guestFilterChildrenEl = document.querySelector(
-    '.guest-filter__children',
-  );
-  const guestFilterSelectEl = document.querySelector('.guest-filter__select');
-  const childrenIncrementBtnEL = document.querySelector(
-    '.guest-filter__children--increment',
-  );
+    // Initial state setup
+    if (Number(currVal) === min) {
+      decreaseBtn.classList.add('_inactive');
+      decreaseBtn.disabled = true;
+      optionalElementsToShow.forEach((e) => e.classList.add('_is-hidden'));
+    }
 
-  let currValChildren = childrenCountEl.textContent;
+    // Increase Button
+    increaseBtn.addEventListener('click', () => {
+      if (Number(currVal) < max) {
+        decreaseBtn.classList.remove('_inactive');
+        increaseBtn.disabled = false;
+        decreaseBtn.disabled = false;
+        optionalElementsToShow.forEach((e) => e.classList.remove('_is-hidden'));
+        currVal = (Number(currVal) + 1).toString();
+        el.textContent = currVal;
+      }
+      if (Number(currVal) === max) {
+        increaseBtn.classList.add('_inactive');
+        increaseBtn.disabled = true;
+      }
+    });
 
-  if (Number(currValChildren) === 0) {
-    guestFilterChildrenEl.classList.add('_is-hidden');
-    guestFilterSelectEl.classList.add('_is-hidden');
+    // Decrease Button
+    decreaseBtn.addEventListener('click', () => {
+      if (Number(currVal) > min) {
+        decreaseBtn.classList.remove('_inactive');
+        increaseBtn.classList.remove('_inactive');
+        increaseBtn.disabled = false;
+        decreaseBtn.disabled = false;
+        currVal = (Number(currVal) - 1).toString();
+        el.textContent = currVal;
+      }
+      if (Number(currVal) === min) {
+        decreaseBtn.classList.add('_inactive');
+        decreaseBtn.disabled = true;
+        optionalElementsToShow.forEach((e) => e.classList.add('_is-hidden'));
+      }
+    });
   }
 
-  // INCREASE BTN
-  childrenIncreaseBtnEl.addEventListener('click', () => {
-    console.log('test');
-    const maxNumChildren = 10;
-    if (Number(currValChildren) < maxNumChildren) {
-      childrenIncrementBtnEL.classList.remove('_inactive');
-      childrenIncreaseBtnEl.disabled = false;
-      childrenDecreaseBtnEl.disabled = false;
-      guestFilterChildrenEl.classList.remove('_is-hidden');
-      guestFilterSelectEl.classList.remove('_is-hidden');
-      currValChildren = (Number(currValChildren) + 1).toString();
-      childrenCountEl.textContent = currValChildren;
-      childrenDecreaseBtnEl.classList.remove('_inactive');
-    }
-    if (Number(currValChildren) === maxNumChildren) {
-      childrenIncrementBtnEL.classList.add('_inactive');
-      childrenIncreaseBtnEl.disabled = true;
-    }
+  // INITIATE COUNTER FOR ADULTS
+  initiateCounter({
+    el: childrenCountEl,
+    decreaseBtn: childrenDecreaseBtnEl,
+    increaseBtn: childrenIncreaseBtnEl,
+    min: 0,
+    max: 10,
+    optionalElementsToShow: [guestFilterChildrenEl, guestFilterSelectEl],
   });
 
-  // DECREASE BTN
-  const childrenDecreaseBtnEl = document.querySelector(
-    '.guest-filter__children--decrement',
-  );
-
-  childrenDecreaseBtnEl.classList.add('_inactive');
-  childrenDecreaseBtnEl.classList.add('_inactive');
-
-  childrenDecreaseBtnEl.addEventListener('click', () => {
-    console.log('test');
-    const minNumChildren = 0;
-    if (Number(currValChildren) > minNumChildren) {
-      childrenDecreaseBtnEl.classList.remove('_inactive');
-      childrenDecreaseBtnEl.disabled = false;
-      childrenIncreaseBtnEl.disabled = false;
-      guestFilterChildrenEl.classList.remove('_is-hidden');
-      guestFilterSelectEl.classList.remove('_is-hidden');
-      currValChildren = (Number(currValChildren) - 1).toString();
-      childrenCountEl.textContent = currValChildren;
-      childrenIncrementBtnEL.classList.remove('_inactive');
-      childrenIncrementBtnEL.classList.remove('_inactive');
-    }
-    if (Number(currValChildren) === minNumChildren) {
-      childrenDecreaseBtnEl.classList.add('_inactive');
-      childrenDecreaseBtnEl.classList.add('_inactive');
-      childrenDecreaseBtnEl.disabled = true;
-      guestFilterChildrenEl.classList.add('_is-hidden');
-      guestFilterSelectEl.classList.add('_is-hidden');
-    }
+  // INITIATE COUNTER FOR CHILDS
+  initiateCounter({
+    el: adultsCountEl,
+    decreaseBtn: adultsDecreaseBtnEl,
+    increaseBtn: adultsIncreaseBtnEl,
+    min: 1,
+    max: 30,
   });
 
-  // ROOMS LOGIC
+  // INITIATE COUNTER FOR ROOMS
+  initiateCounter({
+    el: roomsCountEl,
+    decreaseBtn: roomsDecreaseBtnEl,
+    increaseBtn: roomsIncreaseBtnEl,
+    min: 1,
+    max: 30,
+  });
 }
