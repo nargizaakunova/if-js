@@ -25,7 +25,7 @@ export default function form() {
   const guestFilterChildrenEl = document.querySelector(
     '.guest-filter__children',
   );
-  const guestFilterSelectEl = document.querySelector('.guest-filter__select');
+  // const guestFilterSelectEl = document.querySelector('.guest-filter__select');
 
   // rooms
   const roomsDecreaseBtnEl = document.querySelector(
@@ -57,6 +57,8 @@ export default function form() {
     min,
     max,
     optionalElementsToShow = [],
+    onDecrease,
+    onIncrease,
   }) {
     let currVal = el.textContent;
 
@@ -81,6 +83,10 @@ export default function form() {
         increaseBtn.classList.add('_inactive');
         increaseBtn.disabled = true;
       }
+
+      if (onIncrease) {
+        onIncrease(currVal);
+      }
     });
 
     // Decrease Button
@@ -98,26 +104,37 @@ export default function form() {
         decreaseBtn.disabled = true;
         optionalElementsToShow.forEach((e) => e.classList.add('_is-hidden'));
       }
+
+      if (onDecrease) {
+        onDecrease(currVal);
+      }
     });
   }
 
   // INITIATE COUNTER FOR ADULTS
-  initiateCounter({
-    el: childrenCountEl,
-    decreaseBtn: childrenDecreaseBtnEl,
-    increaseBtn: childrenIncreaseBtnEl,
-    min: 0,
-    max: 10,
-    optionalElementsToShow: [guestFilterChildrenEl, guestFilterSelectEl],
-  });
-
-  // INITIATE COUNTER FOR CHILDS
   initiateCounter({
     el: adultsCountEl,
     decreaseBtn: adultsDecreaseBtnEl,
     increaseBtn: adultsIncreaseBtnEl,
     min: 1,
     max: 30,
+  });
+
+  // INITIATE COUNTER FOR CHILDS
+  initiateCounter({
+    el: childrenCountEl,
+    decreaseBtn: childrenDecreaseBtnEl,
+    increaseBtn: childrenIncreaseBtnEl,
+    min: 0,
+    max: 10,
+    optionalElementsToShow: [guestFilterChildrenEl],
+    onDecrease: (curVal) => {
+      addSelects(curVal);
+    },
+    onIncrease: (curVal) => {
+      console.log('decreased');
+      addSelects(curVal);
+    },
   });
 
   // INITIATE COUNTER FOR ROOMS
@@ -128,4 +145,33 @@ export default function form() {
     min: 1,
     max: 30,
   });
+
+  const selectedAges = new Array(10).fill(0);
+
+  console.log(selectedAges);
+
+  function addSelects(curValue) {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('guest-filter__select');
+    for (let i = 0; i < +curValue; i++) {
+      const selectEl = document.createElement('select');
+      selectEl.classList.add('guest-filter__select--button', '_custom-select');
+      for (let j = 0; j <= 17; j++) {
+        const optionEl = document.createElement('option');
+        optionEl.value = j;
+        optionEl.textContent = `${j} years old`;
+        selectEl.append(optionEl);
+      }
+
+      selectEl.onchange = (event) => {
+        selectedAges[i] = event.target.value;
+      };
+
+      selectEl.value = selectedAges[i];
+      wrapper.append(selectEl);
+    }
+
+    const guestFilterSelectEl = document.querySelector('.guest-filter__select');
+    guestFilterSelectEl.parentNode.replaceChild(wrapper, guestFilterSelectEl);
+  }
 }
