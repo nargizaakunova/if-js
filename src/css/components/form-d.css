@@ -66,7 +66,7 @@
   border-radius: 8px;
   padding: 22px;
   margin-top: 12px;
-  box-shadow: 0px 1px 8px 0px gray;
+  box-shadow: 0px 1px 8px 0px var(--color-stroke);
 }
 
 .guest-filter__category {
@@ -101,7 +101,7 @@
 
 .guest-filter__button:hover:not([disabled]) {
   border: 1px solid var(--color-accent-blue);
-  background-color: var(--color-accent-blue) ;
+  background-color: var(--color-accent-blue);
   color: var(--color-general-white);
 }
 
