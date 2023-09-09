@@ -1,6 +1,6 @@
 export default function form() {
   // DOM ELEMENTS:
-  const guestsInputFieldEl = document.querySelector('.form__input--guests');
+  const guestsFieldWrapperEl = document.querySelector('.form__guests-wrapper');
   const guestFilterEl = document.querySelector('.guest-filter');
 
   // adults
@@ -36,18 +36,33 @@ export default function form() {
   );
   const roomsCountEl = document.querySelector('.guest-filter__count--rooms');
 
+  const formAdultsSpanEl = document.getElementById('form__adults-span');
+  const formChildrenSpanEl = document.getElementById('form__children-span');
+  const formRoomsSpanEl = document.getElementById('form__rooms-span');
+
+  // hidden form inputs
+  const adultsHiddenInput = document.querySelector(`input[name=adults]`);
+  const childrenHiddenInput = document.querySelector(`input[name=children]`);
+  const roomsHiddenInput = document.querySelector(`input[name=rooms]`);
+
   // Get Guest Input and click
-  guestsInputFieldEl.addEventListener('click', () => {
+  guestsFieldWrapperEl.addEventListener('click', () => {
+    // hide guest pop-up when click outside
+    if (guestFilterEl.classList.contains('_is-hidden')) {
+      document.addEventListener('click', function onClickOutside(e) {
+        if (!e.target.closest('.form__field--guests')) {
+          guestFilterEl.classList.add('_is-hidden');
+          guestsFieldWrapperEl.classList.remove('_focused');
+          document.removeEventListener('click', onClickOutside);
+        }
+      });
+    }
+    // show guest pop-up
     guestFilterEl.classList.toggle('_is-hidden');
+    guestsFieldWrapperEl.classList.add('_focused');
   });
 
   // Click outside of Guest Filter:
-  document.addEventListener('click', (e) => {
-    console.log(e.target);
-    if (!e.target.closest('.form__field--guests')) {
-      guestFilterEl.classList.add('_is-hidden');
-    }
-  });
 
   // COUNTER GENERIC FUNCTION
   function initiateCounter({
@@ -118,9 +133,17 @@ export default function form() {
     increaseBtn: adultsIncreaseBtnEl,
     min: 1,
     max: 30,
+    onDecrease: (curVal) => {
+      changeFormFieldVal(formAdultsSpanEl, curVal);
+      updateHiddenInputVal(adultsHiddenInput, curVal);
+    },
+    onIncrease: (curVal) => {
+      changeFormFieldVal(formAdultsSpanEl, curVal);
+      updateHiddenInputVal(adultsHiddenInput, curVal);
+    },
   });
 
-  // INITIATE COUNTER FOR CHILDS
+  // INITIATE COUNTER FOR CHILDREN
   initiateCounter({
     el: childrenCountEl,
     decreaseBtn: childrenDecreaseBtnEl,
@@ -129,11 +152,14 @@ export default function form() {
     max: 10,
     optionalElementsToShow: [guestFilterChildrenEl],
     onDecrease: (curVal) => {
-      addSelects(curVal);
+      updateChildrenAgeSelects(curVal);
+      changeFormFieldVal(formChildrenSpanEl, curVal);
+      updateHiddenInputVal(childrenHiddenInput, curVal);
     },
     onIncrease: (curVal) => {
-      console.log('decreased');
-      addSelects(curVal);
+      updateChildrenAgeSelects(curVal);
+      changeFormFieldVal(formChildrenSpanEl, curVal);
+      updateHiddenInputVal(childrenHiddenInput, curVal);
     },
   });
 
@@ -144,18 +170,33 @@ export default function form() {
     increaseBtn: roomsIncreaseBtnEl,
     min: 1,
     max: 30,
+    onDecrease: (curVal) => {
+      changeFormFieldVal(formRoomsSpanEl, curVal);
+      updateHiddenInputVal(roomsHiddenInput, curVal);
+    },
+    onIncrease: (curVal) => {
+      changeFormFieldVal(formRoomsSpanEl, curVal);
+      updateHiddenInputVal(roomsHiddenInput, curVal);
+    },
   });
 
-  const selectedAges = new Array(10).fill(0);
+  const maxChildrenNum = 10;
+  const selectedAges = new Array(maxChildrenNum).fill(0);
 
-  console.log(selectedAges);
+  function updateChildrenAgeSelects(curValue) {
+    // nullify ages for removed children
+    for (let i = curValue; i < maxChildrenNum; i++) {
+      selectedAges[i] = 0;
+    }
 
-  function addSelects(curValue) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('guest-filter__select');
+
     for (let i = 0; i < +curValue; i++) {
       const selectEl = document.createElement('select');
+      selectEl.name = 'childAge';
       selectEl.classList.add('guest-filter__select--button', '_custom-select');
+
       for (let j = 0; j <= 17; j++) {
         const optionEl = document.createElement('option');
         optionEl.value = j;
@@ -173,5 +214,13 @@ export default function form() {
 
     const guestFilterSelectEl = document.querySelector('.guest-filter__select');
     guestFilterSelectEl.parentNode.replaceChild(wrapper, guestFilterSelectEl);
+  }
+
+  function changeFormFieldVal(el, counter) {
+    el.textContent = counter;
+  }
+
+  function updateHiddenInputVal(el, curVal) {
+    el.value = curVal;
   }
 }

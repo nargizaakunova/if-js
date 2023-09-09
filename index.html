@@ -82,6 +82,10 @@
           </h2>
           <!--        Desktop form-->
           <form class="form top-section__form">
+            <input type="hidden" name="adults" value="2" />
+            <input type="hidden" name="children" value="0" />
+            <input type="hidden" name="rooms" value="1" />
+
             <div class="form__field form__field--city">
               <label
                 class="form__label top__section__label _pad-left"
@@ -111,20 +115,39 @@
                 placeholder="Tue 15 Sept &mdash; Sat 19 Sept"
                 title="Choose check-in &mdash; check-out dates"
               />
+
+              <!-- Date Filter-->
+              <div class="date-filter">
+                <div class="date-filter__calendar calendar _is-hidden">
+                  <div class="calendar__current-month"></div>
+                  <div class="calendar__next-month">
+                    <div class="calendar__next-month">
+                      <h3 class="calendar__month-title">January</h3>
+                      <div class="calendar__weekdays">
+                        <span>Mn</span>
+                        <span>Tu</span>
+                        <span>Wd</span>
+                        <span>Th</span>
+                        <span>Fr</span>
+                        <span>St</span>
+                        <span>Su</span>
+                      </div>
+                      <div class="calendar__days">rty</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form__field form__field--guests">
-              <label
-                class="form__label top__section__label _pad-left"
-                for="guests"
-              ></label>
-              <input
-                class="form__input form__input--guests"
-                type="text"
-                id="guests"
-                name="guests"
-                placeholder="2 Adults — 0 Children — 1 Room"
-                title="Enter number of adults, children, and rooms"
-              />
+              <div class="form__guests-wrapper">
+                <span id="form__adults-span">2</span>
+                <span> Adults —</span>
+                <span id="form__children-span">0</span>
+                <span> Children —</span>
+                <span id="form__rooms-span">1</span>
+                <span> Room</span>
+              </div>
+
               <!-- Guests Filter-->
               <div class="guest-filter _is-hidden">
                 <div class="guest-filter__category">
@@ -193,11 +216,7 @@
                   <p class="guest-filter__question">
                     What is the age of the child you’re travelling with?
                   </p>
-                  <div class="guest-filter__select">
-                    <!--                    <select class="guest-filter__select&#45;&#45;button _custom-select">-->
-                    <!--                      <option>0 years old</option>-->
-                    <!--                    </select>-->
-                  </div>
+                  <div class="guest-filter__select"></div>
                 </div>
               </div>
             </div>
