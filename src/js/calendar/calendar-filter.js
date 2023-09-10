@@ -4,7 +4,7 @@ export default function calendarFilter() {
   const formInputDateEl = document.querySelector('.form__input--date');
   const calendarEl = document.querySelector('.calendar');
   const currentMonthEl = document.querySelector('.calendar__current-month');
-  // const nextMonthEl = document.querySelector('.calendar__next-month');
+  const nextMonthEl = document.querySelector('.calendar__next-month');
 
   formInputDateEl.addEventListener('click', () => {
     if (calendarEl.classList.contains('_is-hidden')) {
@@ -20,54 +20,51 @@ export default function calendarFilter() {
     }
   }
 
-  console.log(getCalendarMonthFor(new Date()));
+  const daysOfCurMonth = getCalendarMonthFor(new Date());
+  const nextMonth = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    1,
+  );
+  const daysOfNextMonth = getCalendarMonthFor(nextMonth);
 
-  function renderCalendarCurrentMonth() {
-    // currentMonthEl.innerHTML = `
-    //                 <div class="calendar__weekdays">
-    //                   <span>Mn</span>
-    //                   <span>Tu</span>
-    //                   <span>Wd</span>
-    //                   <span>Th</span>
-    //                   <span>Fr</span>
-    //                   <span>St</span>
-    //                   <span>Su</span>
-    //                 </div>
-    //                 <div class="calendar__days">
-    //                   <div class="calendar__week">
-    //                     <span class="calendar__month-day">d</span>
-    //                     <span class="calendar__month-day">5</span>
-    //                     <span class="calendar__month-day">6</span>
-    //                     <span class="calendar__month-day current-day">7</span>
-    //                     <span class="calendar__month-day">8</span>
-    //                     <span class="calendar__month-day">9</span>
-    //                     <span class="calendar__month-day">10</span>
-    //                   </div>
-    //                 </div>
-    // `;
-
+  function renderCalendarMonth(monthDays, month, monthWrapper) {
     const calendarMonthTitleEl = document.createElement('h3');
     calendarMonthTitleEl.classList.add('calendar__month-title');
-    calendarMonthTitleEl.textContent = new Date().toLocaleString('default', {
+    calendarMonthTitleEl.textContent = month.toLocaleString('default', {
       month: 'long',
     });
 
     const calendarWeekdaysEl = document.createElement('div');
     calendarWeekdaysEl.classList.add('calendar__weekdays');
 
-    for (let i = 0; i < 7; i++) {
+    const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'];
+    for (let i = 0; i < daysOfWeek.length; i++) {
       const weekdayEl = document.createElement('span');
-      weekdayEl.textContent = new Date()
-        .toLocaleString('default', {
-          weekday: 'short',
-        })
-        .slice(0, 2);
+      weekdayEl.textContent = daysOfWeek[i];
       calendarWeekdaysEl.append(weekdayEl);
     }
 
-    currentMonthEl.append(calendarMonthTitleEl);
-    currentMonthEl.append(calendarWeekdaysEl);
+    const calendarDaysEl = document.createElement('div');
+    calendarDaysEl.classList.add('calendar__days');
+
+    for (let week = 0; week < monthDays.length; week++) {
+      const calendarWeekEl = document.createElement('div');
+      calendarWeekEl.classList.add('calendar__week');
+      calendarDaysEl.append(calendarWeekEl);
+      for (let day = 0; day < monthDays[week].length; day++) {
+        const daySpanEl = document.createElement('span');
+        daySpanEl.classList.add('calendar__month-day');
+        daySpanEl.textContent = monthDays[week][day];
+        calendarWeekEl.append(daySpanEl);
+      }
+    }
+
+    monthWrapper.append(calendarMonthTitleEl);
+    monthWrapper.append(calendarWeekdaysEl);
+    monthWrapper.append(calendarDaysEl);
   }
 
-  renderCalendarCurrentMonth();
+  renderCalendarMonth(daysOfCurMonth, new Date(), currentMonthEl);
+  renderCalendarMonth(daysOfNextMonth, nextMonth, nextMonthEl);
 }

@@ -45,7 +45,7 @@ export default function form() {
   const childrenHiddenInput = document.querySelector(`input[name=children]`);
   const roomsHiddenInput = document.querySelector(`input[name=rooms]`);
 
-  // Get Guest Input and click
+  // Click on Guest
   guestsFieldWrapperEl.addEventListener('click', () => {
     // hide guest pop-up when click outside
     if (guestFilterEl.classList.contains('_is-hidden')) {
@@ -61,8 +61,6 @@ export default function form() {
     guestFilterEl.classList.toggle('_is-hidden');
     guestsFieldWrapperEl.classList.add('_focused');
   });
-
-  // Click outside of Guest Filter:
 
   // COUNTER GENERIC FUNCTION
   function initiateCounter({

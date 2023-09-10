@@ -60,7 +60,6 @@ export default function createHomesSection() {
   homesContainerEl.appendChild(homesMainTitleEl);
   homesContainerEl.appendChild(homesWrapperEl);
   homesSectionEl.appendChild(homesContainerEl);
-  console.log(offersSectionEl.parentNode);
   offersSectionEl.parentNode.insertBefore(
     homesSectionEl,
     offersSectionEl.nextSibling,
