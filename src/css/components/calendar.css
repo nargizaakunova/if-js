@@ -40,3 +40,11 @@
   text-align: center;
   min-width: 35px;
 }
+
+.calendar__month-day._unavailable {
+  color: var(--color-secondary-text);
+}
+
+.calendar__month-day._available {
+  cursor: pointer;
+}

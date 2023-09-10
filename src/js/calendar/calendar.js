@@ -76,4 +76,3 @@ export function getCalendarMonthFor(date) {
     currentMonthLastDate,
   );
 }
-

@@ -147,7 +147,7 @@
 }
 
 ._focused {
-  border: 3px solid var(--color-accent-yellow);
+  border: 3px solid var(--color-accent-yellow) !important;
   box-shadow: 0 0 10px var(--color-stroke);
 }
 
@@ -163,9 +163,17 @@
   background-position-x: 90%;
 }
 
-.form__input--date {
-  padding-left: 20px;
+.form__date-wrapper {
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.23;
+  color: var(--text-color);
+  width: 100%;
+  padding: 18px 24px 18px 20px;
+  border-radius: 8px;
   border: 3px solid var(--color-stroke);
+  cursor: pointer;
 }
 
 .guest-filter__select {

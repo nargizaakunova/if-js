@@ -82,10 +82,11 @@
           </h2>
           <!--        Desktop form-->
           <form class="form top-section__form">
+            <input type="hidden" name="startDate" value="" />
+            <input type="hidden" name="endDate" value="" />
             <input type="hidden" name="adults" value="2" />
             <input type="hidden" name="children" value="0" />
             <input type="hidden" name="rooms" value="1" />
-
             <div class="form__field form__field--city">
               <label
                 class="form__label top__section__label _pad-left"
@@ -102,19 +103,14 @@
               />
             </div>
             <div class="form__field form__field--date">
-              <label
-                class="form__label top__section__label _pad-left"
-                for="date"
-                >Check-in &mdash; Check-out</label
+              <span class="form__label top__section__label _pad-left"
+                >Check-in &mdash; Check-out</span
               >
-              <input
-                class="form__input form__input--date"
-                type="text"
-                id="date"
-                name="date"
-                placeholder="Tue 15 Sept &mdash; Sat 19 Sept"
-                title="Choose check-in &mdash; check-out dates"
-              />
+              <div class="form__date-wrapper">
+                <span id="form__date-start">Tue 15 Sept</span>
+                <span id="form__date-hyphen"> — </span>
+                <span id="form__date-end">Sat 19 Sept</span>
+              </div>
               <!-- Date Filter-->
               <div class="date-filter">
                 <div class="date-filter__calendar calendar _is-hidden">

@@ -59,7 +59,11 @@ export default function form() {
     }
     // show guest pop-up
     guestFilterEl.classList.toggle('_is-hidden');
-    guestsFieldWrapperEl.classList.add('_focused');
+    if (!guestsFieldWrapperEl.classList.contains('_focused')) {
+      guestsFieldWrapperEl.classList.add('_focused');
+    } else {
+      guestsFieldWrapperEl.classList.remove('_focused');
+    }
   });
 
   // COUNTER GENERIC FUNCTION
