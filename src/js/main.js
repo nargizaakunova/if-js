@@ -1,7 +1,7 @@
-import form from './form.js';
+import formGuestsFilter from './formGuestsFilter.js';
 import createHomesSection from './homes.js';
 import calendarFilter from './calendar/calendar-filter.js';
 
-form();
+formGuestsFilter();
 calendarFilter();
 createHomesSection();

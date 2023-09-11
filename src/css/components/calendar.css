@@ -48,3 +48,7 @@
 .calendar__month-day._available {
   cursor: pointer;
 }
+
+.calendar__month-day._currentDay {
+  color: var(--color-accent-blue);
+}

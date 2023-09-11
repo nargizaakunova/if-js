@@ -1,4 +1,4 @@
-export default function form() {
+export default function formGuestsFilter() {
   // DOM ELEMENTS:
   const guestsFieldWrapperEl = document.querySelector('.form__guests-wrapper');
   const guestFilterEl = document.querySelector('.guest-filter');
@@ -25,7 +25,6 @@ export default function form() {
   const guestFilterChildrenEl = document.querySelector(
     '.guest-filter__children',
   );
-  // const guestFilterSelectEl = document.querySelector('.guest-filter__select');
 
   // rooms
   const roomsDecreaseBtnEl = document.querySelector(
@@ -47,8 +46,10 @@ export default function form() {
 
   // Click on Guest
   guestsFieldWrapperEl.addEventListener('click', () => {
+    // show guest pop-up
+    guestFilterEl.classList.toggle('_is-hidden');
     // hide guest pop-up when click outside
-    if (guestFilterEl.classList.contains('_is-hidden')) {
+    if (!guestFilterEl.classList.contains('_is-hidden')) {
       document.addEventListener('click', function onClickOutside(e) {
         if (!e.target.closest('.form__field--guests')) {
           guestFilterEl.classList.add('_is-hidden');
@@ -57,8 +58,6 @@ export default function form() {
         }
       });
     }
-    // show guest pop-up
-    guestFilterEl.classList.toggle('_is-hidden');
     if (!guestsFieldWrapperEl.classList.contains('_focused')) {
       guestsFieldWrapperEl.classList.add('_focused');
     } else {

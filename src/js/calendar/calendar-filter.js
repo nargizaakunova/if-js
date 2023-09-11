@@ -8,12 +8,67 @@ export default function calendarFilter() {
   const formDateFieldTitle = document.querySelector(
     '.form__field--date .form__label',
   );
+  const startDateCaption = document.getElementById('form__date-start');
+  const endDateCaption = document.getElementById('form__date-end');
+  const startDateHiddenInput = document.querySelector(`input[name=startDate]`);
+  const endDateHiddenInput = document.querySelector(`input[name=endDate]`);
 
-  function formClickHandler() {
-    if (calendarEl.classList.contains('_is-hidden')) {
+  const model = {
+    _startDate: null,
+    _endDate: null,
+    get startDate() {
+      return this._startDate;
+    },
+    set startDate(val) {
+      this._startDate = val;
+      if (val) {
+        startDateCaption.textContent = val
+          .toLocaleString('default', {
+            month: 'short',
+            weekday: 'short',
+            day: '2-digit',
+          })
+          .replaceAll(',', '');
+        startDateHiddenInput.value = val.toLocaleString('en-UK', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        }).replaceAll('/', '-');
+      } else {
+        endDateCaption.textContent = 'Check in';
+        startDateHiddenInput.value = '';
+      }
+    },
+    get endDate() {
+      return this._endDate;
+    },
+    set endDate(val) {
+      this._endDate = val;
+      if (val) {
+        endDateCaption.textContent = val
+          .toLocaleString('default', {
+            month: 'short',
+            weekday: 'short',
+            day: '2-digit',
+          })
+          .replaceAll(',', '');
+        endDateHiddenInput.value = val.toLocaleString('en-UK', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        }).replaceAll('/', '-');
+      } else {
+        endDateCaption.textContent = 'Check out';
+        endDateHiddenInput.value = '';
+      }
+    },
+  };
+
+  function formDateClickHandler() {
+    calendarEl.classList.toggle('_is-hidden');
+    if (!calendarEl.classList.contains('_is-hidden')) {
       document.addEventListener('click', onClickedOutside);
     }
-    calendarEl.classList.toggle('_is-hidden');
     if (!formDateWrapperEl.classList.contains('_focused')) {
       formDateWrapperEl.classList.add('_focused');
     } else {
@@ -21,8 +76,8 @@ export default function calendarFilter() {
     }
   }
 
-  formDateWrapperEl.addEventListener('click', formClickHandler);
-  formDateFieldTitle.addEventListener('click', formClickHandler);
+  formDateWrapperEl.addEventListener('click', formDateClickHandler);
+  formDateFieldTitle.addEventListener('click', formDateClickHandler);
 
   function onClickedOutside(e) {
     if (!e.target.closest('.form__field--date')) {
@@ -32,6 +87,7 @@ export default function calendarFilter() {
     }
   }
 
+  // sending CURRENT month and NEXT month as parameters to getCalendarMonthFor function
   const daysOfCurMonth = getCalendarMonthFor(new Date());
   const nextMonth = new Date(
     new Date().getFullYear(),
@@ -40,7 +96,12 @@ export default function calendarFilter() {
   );
   const daysOfNextMonth = getCalendarMonthFor(nextMonth);
 
-  function renderCalendarMonth(monthDays, month, monthWrapper) {
+  function renderCalendarMonth(
+    monthDays,
+    month,
+    monthWrapper,
+    callbackOnDateSelected,
+  ) {
     const calendarMonthTitleEl = document.createElement('h3');
     calendarMonthTitleEl.classList.add('calendar__month-title');
     calendarMonthTitleEl.textContent = month.toLocaleString('default', {
@@ -59,6 +120,14 @@ export default function calendarFilter() {
 
     const calendarDaysEl = document.createElement('div');
     calendarDaysEl.classList.add('calendar__days');
+    calendarDaysEl.addEventListener('click', function daysClickHandler(e) {
+      if (e.target.classList.contains('_unavailable')) {
+        return;
+      }
+      callbackOnDateSelected(
+        new Date(month.getFullYear(), month.getMonth(), +e.target.textContent),
+      );
+    });
 
     let isPrevMonth = true;
     const isCurrentMonth = month.getMonth() === new Date().getMonth();
@@ -78,9 +147,13 @@ export default function calendarFilter() {
 
         if (isPrevMonth) {
           daySpanEl.classList.add('_unavailable');
-        }
-        if (isCurrentMonth && monthDays[week][day] < currentDay) {
+        } else if (isCurrentMonth && monthDays[week][day] < currentDay) {
           daySpanEl.classList.add('_unavailable');
+        } else {
+          daySpanEl.classList.add('_available');
+          if (isCurrentMonth && monthDays[week][day] === currentDay) {
+            daySpanEl.classList.add('_currentDay');
+          }
         }
 
         calendarWeekEl.append(daySpanEl);
@@ -92,6 +165,27 @@ export default function calendarFilter() {
     monthWrapper.append(calendarDaysEl);
   }
 
-  renderCalendarMonth(daysOfCurMonth, new Date(), currentMonthEl);
-  renderCalendarMonth(daysOfNextMonth, nextMonth, nextMonthEl);
+  function handleDaysClicked(date) {
+    if (model.startDate && model.endDate) {
+      model.startDate = null;
+      model.endDate = null;
+    }
+
+    if (!model.startDate) {
+      model.startDate = date;
+    } else {
+      if (model.startDate >= date) {
+        model.startDate = date;
+      } else {
+        model.endDate = date;
+      }
+    }
+  }
+
+  renderCalendarMonth(daysOfCurMonth, new Date(), currentMonthEl, (date) => {
+    handleDaysClicked(date);
+  });
+  renderCalendarMonth(daysOfNextMonth, nextMonth, nextMonthEl, (date) => {
+    handleDaysClicked(date);
+  });
 }
