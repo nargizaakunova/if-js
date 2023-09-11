@@ -152,7 +152,7 @@
 }
 
 ._day-selected {
-  background-color: var(--color-accent-blue) ;
+  background-color: var(--color-accent-blue);
   color: var(--color-general-white) !important;
 }
 
