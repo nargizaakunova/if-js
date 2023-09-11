@@ -29,11 +29,13 @@ export default function calendarFilter() {
             day: '2-digit',
           })
           .replaceAll(',', '');
-        startDateHiddenInput.value = val.toLocaleString('en-UK', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-        }).replaceAll('/', '-');
+        startDateHiddenInput.value = val
+          .toLocaleString('en-UK', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          })
+          .replaceAll('/', '-');
       } else {
         endDateCaption.textContent = 'Check in';
         startDateHiddenInput.value = '';
@@ -52,11 +54,13 @@ export default function calendarFilter() {
             day: '2-digit',
           })
           .replaceAll(',', '');
-        endDateHiddenInput.value = val.toLocaleString('en-UK', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-        }).replaceAll('/', '-');
+        endDateHiddenInput.value = val
+          .toLocaleString('en-UK', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          })
+          .replaceAll('/', '-');
       } else {
         endDateCaption.textContent = 'Check out';
         endDateHiddenInput.value = '';
@@ -126,6 +130,7 @@ export default function calendarFilter() {
       }
       callbackOnDateSelected(
         new Date(month.getFullYear(), month.getMonth(), +e.target.textContent),
+        e.target,
       );
     });
 
@@ -165,27 +170,77 @@ export default function calendarFilter() {
     monthWrapper.append(calendarDaysEl);
   }
 
-  function handleDaysClicked(date) {
+  function handleDaysClicked(date, target) {
     if (model.startDate && model.endDate) {
       model.startDate = null;
       model.endDate = null;
+      unselectDays();
+      unfillColorBetweenSelectedDays();
     }
 
     if (!model.startDate) {
       model.startDate = date;
+      unselectDays();
+      target.classList.add('_day-selected');
     } else {
       if (model.startDate >= date) {
         model.startDate = date;
+        unselectDays();
+        target.classList.add('_day-selected');
       } else {
         model.endDate = date;
+        target.classList.add('_day-selected');
+        fillColorBetweenSelectedDays();
+        calendarEl.classList.add('_is-hidden');
+        formDateWrapperEl.classList.remove('_focused');
       }
     }
   }
 
-  renderCalendarMonth(daysOfCurMonth, new Date(), currentMonthEl, (date) => {
-    handleDaysClicked(date);
-  });
-  renderCalendarMonth(daysOfNextMonth, nextMonth, nextMonthEl, (date) => {
-    handleDaysClicked(date);
-  });
+  function unselectDays() {
+    const daysSelectedSpanEls = document.querySelectorAll('._day-selected');
+    Array.from(daysSelectedSpanEls).forEach((daySelected) => {
+      daySelected.classList.remove('_day-selected');
+    });
+  }
+
+  function fillColorBetweenSelectedDays() {
+    let selectionMode = false;
+    document
+      .querySelectorAll('.calendar__month-day._available')
+      .forEach((item) => {
+        if (item.classList.contains('_day-selected')) {
+          selectionMode = !selectionMode;
+          return;
+        }
+        if (selectionMode) {
+          item.classList.add('_days-in-between');
+        }
+      });
+  }
+
+  function unfillColorBetweenSelectedDays() {
+    document
+      .querySelectorAll('.calendar__month-day._available')
+      .forEach((item) => {
+        item.classList.remove('_days-in-between');
+      });
+  }
+
+  renderCalendarMonth(
+    daysOfCurMonth,
+    new Date(),
+    currentMonthEl,
+    (date, target) => {
+      handleDaysClicked(date, target);
+    },
+  );
+  renderCalendarMonth(
+    daysOfNextMonth,
+    nextMonth,
+    nextMonthEl,
+    (date, target) => {
+      handleDaysClicked(date, target);
+    },
+  );
 }

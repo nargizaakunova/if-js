@@ -151,6 +151,16 @@
   box-shadow: 0 0 10px var(--color-stroke);
 }
 
+._day-selected {
+  background-color: var(--color-accent-blue) ;
+  color: var(--color-general-white) !important;
+}
+
+._days-in-between {
+  background-color: var(--color-stroke);
+  color: var(--color-dark-mode-3);
+}
+
 ._custom-select {
   -webkit-appearance: none;
   -moz-appearance: none;
