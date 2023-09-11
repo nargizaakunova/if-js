@@ -1,6 +1,4 @@
-import data from './array.js';
-
-export default function createHomesSection() {
+export default async function createHomesSection() {
   const offersSectionEl = document.getElementById('offers');
 
   const homesSectionEl = document.createElement('section');
@@ -21,7 +19,17 @@ export default function createHomesSection() {
   const homesCardsEl = document.createElement('ul');
   homesCardsEl.classList.add('cards', 'homes__cards');
 
-  data.map((card, index) => {
+  async function fetchHotelsData() {
+    const response = await fetch(
+      'https://if-student-api.onrender.com/api/hotels/popular',
+    );
+    const data = await response.json();
+    return data;
+  }
+
+  const fetchedHotels = await fetchHotelsData();
+
+  fetchedHotels.map((card, index) => {
     const homeCardEl = document.createElement('li');
     homeCardEl.classList.add(
       'col-lg-3',
@@ -40,7 +48,7 @@ export default function createHomesSection() {
     homeImgEl.alt = card.name;
 
     if (index <= 3) {
-      homeImgEl.src = `./src/images/content-img/homes-${index + 1}.png`;
+      homeImgEl.src = card.imageUrl;
 
       const homeTitleEl = document.createElement('h3');
       homeTitleEl.classList.add('home__title');
