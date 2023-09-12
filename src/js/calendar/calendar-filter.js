@@ -8,7 +8,9 @@ export const model = {
   },
   set startDate(val) {
     const startDateCaption = document.getElementById('form__date-start');
-    const startDateHiddenInput = document.querySelector(`input[name=startDate]`);
+    const startDateHiddenInput = document.querySelector(
+      `input[name=startDate]`,
+    );
     const endDateCaption = document.getElementById('form__date-end');
     this._startDate = val;
     if (val) {

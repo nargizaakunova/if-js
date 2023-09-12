@@ -10,14 +10,15 @@ export function getAvailableHotels(value) {
 
 export async function renderAvailableHotels(value) {
   const hotels = await getAvailableHotels(value);
-  console.log(hotels);
+  await createAvailableHotelsSection(hotels);
+}
 
-  async function createAvailableHotelsSection() {
+async function createAvailableHotelsSection(hotels) {
+  if (hotels.length) {
     const topSection = document.querySelector('.top-section');
-
     const availHotelsSectionEl = document.createElement('section');
     availHotelsSectionEl.classList.add('availHotels', 'homes');
-    availHotelsSectionEl.id = 'homes';
+    availHotelsSectionEl.id = 'availHotels';
     availHotelsSectionEl.style.order = '2';
 
     const availHotelsContainerEl = document.createElement('div');
@@ -77,6 +78,12 @@ export async function renderAvailableHotels(value) {
     availHotelsContainerEl.appendChild(availHotelsMainTitleEl);
     availHotelsContainerEl.appendChild(availHotelsWrapperEl);
     availHotelsSectionEl.appendChild(availHotelsContainerEl);
+
+    const availHotelsEl = document.getElementById('availHotels');
+    if (availHotelsEl) {
+      availHotelsEl.innerHTML = '';
+    }
+
     topSection.parentNode.insertBefore(
       availHotelsSectionEl,
       topSection.nextSibling,
@@ -111,6 +118,41 @@ export async function renderAvailableHotels(value) {
     arrowBtnSVGEl.appendChild(arrowBtnUseEl);
     availHotelsArrowBtnEl.appendChild(arrowBtnSVGEl);
     availHotelsWrapperEl.appendChild(availHotelsArrowBtnEl);
+  } else {
+    const topSection = document.querySelector('.top-section');
+    const availHotelsSectionEl = document.createElement('section');
+    availHotelsSectionEl.classList.add('availHotels', 'homes');
+    availHotelsSectionEl.id = 'availHotels';
+    availHotelsSectionEl.style.order = '2';
+
+    const availHotelsContainerEl = document.createElement('div');
+    availHotelsContainerEl.classList.add('container', 'homes__container');
+
+    const availHotelsMainTitleEl = document.createElement('h2');
+    availHotelsMainTitleEl.classList.add('title', 'homes__main-title');
+    availHotelsMainTitleEl.textContent = 'Available hotels';
+
+    const availHotelsWrapperEl = document.createElement('div');
+    availHotelsWrapperEl.classList.add('homes__wrapper');
+
+    // ul, li, data
+    const availHotelsWarning = document.createElement('p');
+    availHotelsWarning.textContent = 'Sorry, no hotels found for your search!';
+    availHotelsWarning.classList.add('_is-centered');
+
+    availHotelsWrapperEl.appendChild(availHotelsWarning);
+    availHotelsContainerEl.appendChild(availHotelsMainTitleEl);
+    availHotelsContainerEl.appendChild(availHotelsWrapperEl);
+    availHotelsSectionEl.appendChild(availHotelsContainerEl);
+
+    const availHotelsEl = document.getElementById('availHotels');
+    if (availHotelsEl) {
+      availHotelsEl.innerHTML = '';
+    }
+
+    topSection.parentNode.insertBefore(
+      availHotelsSectionEl,
+      topSection.nextSibling,
+    );
   }
-  await createAvailableHotelsSection();
 }
