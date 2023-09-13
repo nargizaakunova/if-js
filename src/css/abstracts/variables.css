@@ -14,10 +14,12 @@
   --button-font-size: 24px;
   --buttons-mg-bottom: 65px;
   --text-color: #383838;
+  --filter-title-color: #333;
   --color-dark-mode-1: #121212;
   --color-dark-mode-2: #1d1e1f;
   --color-dark-mode-3: #4d4d4d;
   --color-stroke: #f3f3f4;
+  --color-inactive-btn: #cecece;
   --color-secondary-text: #bfbfbf;
   --color-general-white: #fff;
   --color-accent-yellow: #f5bd41;

@@ -82,6 +82,11 @@
           </h2>
           <!--        Desktop form-->
           <form class="form top-section__form">
+            <input type="hidden" name="startDate" value="" />
+            <input type="hidden" name="endDate" value="" />
+            <input type="hidden" name="adults" value="2" />
+            <input type="hidden" name="children" value="0" />
+            <input type="hidden" name="rooms" value="1" />
             <div class="form__field form__field--city">
               <label
                 class="form__label top__section__label _pad-left"
@@ -98,34 +103,107 @@
               />
             </div>
             <div class="form__field form__field--date">
-              <label
-                class="form__label top__section__label _pad-left"
-                for="date"
-                >Check-in &mdash; Check-out</label
+              <span class="form__label top__section__label _pad-left"
+                >Check-in &mdash; Check-out</span
               >
-              <input
-                class="form__input form__input--date"
-                type="text"
-                id="date"
-                name="date"
-                placeholder="Tue 15 Sept &mdash; Sat 19 Sept"
-                title="Choose check-in &mdash; check-out dates"
-              />
+              <div class="form__date-wrapper">
+                <span id="form__date-start">Tue 15 Sept</span>
+                <span id="form__date-hyphen"> — </span>
+                <span id="form__date-end">Sat 19 Sept</span>
+              </div>
+              <!-- Date Filter-->
+              <div class="date-filter">
+                <div class="date-filter__calendar calendar _is-hidden">
+                  <div class="calendar__current-month"></div>
+                  <div class="calendar__next-month">
+                    <div class="calendar__next-month"></div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form__field form__field--guests">
-              <label
-                class="form__label top__section__label _pad-left"
-                for="guests"
-              ></label>
-              <input
-                class="form__input form__input--guests"
-                type="text"
-                id="guests"
-                name="guests"
-                placeholder="2 Adults — 0 Children — 1 Room"
-                title="Enter number of adults, children, and rooms"
-              />
+              <div class="form__guests-wrapper">
+                <span id="form__adults-span">2</span>
+                <span> Adults —</span>
+                <span id="form__children-span">0</span>
+                <span> Children —</span>
+                <span id="form__rooms-span">1</span>
+                <span> Room</span>
+              </div>
+
+              <!-- Guests Filter-->
+              <div class="guest-filter _is-hidden">
+                <div class="guest-filter__category">
+                  <h3 class="guest-filter__title">Adults:</h3>
+                  <div class="guest-filter__counter">
+                    <button
+                      type="button"
+                      class="guest-filter__button guest-filter__button--decrement guest-filter__adults--decrement"
+                    >
+                      -
+                    </button>
+                    <span
+                      class="guest-filter__count guest-filter__count--adults"
+                      >2</span
+                    >
+                    <button
+                      type="button"
+                      class="guest-filter__button guest-filter__button--increment guest-filter__adults--increment"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="guest-filter__category">
+                  <h3 class="guest-filter__title">Children:</h3>
+                  <div class="guest-filter__counter">
+                    <button
+                      type="button"
+                      class="guest-filter__button guest-filter__button--decrement guest-filter__children--decrement"
+                    >
+                      -
+                    </button>
+                    <span
+                      class="guest-filter__count guest-filter__count--children"
+                      >0</span
+                    >
+                    <button
+                      type="button"
+                      class="guest-filter__button guest-filter__button--increment guest-filter__children--increment"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="guest-filter__category">
+                  <h3 class="guest-filter__title">Rooms:</h3>
+                  <div class="guest-filter__counter">
+                    <button
+                      type="button"
+                      class="guest-filter__button guest-filter__button--decrement guest-filter__rooms--decrement"
+                    >
+                      -
+                    </button>
+                    <span class="guest-filter__count guest-filter__count--rooms"
+                      >1</span
+                    >
+                    <button
+                      type="button"
+                      class="guest-filter__button guest-filter__button--increment guest-filter__rooms--increment"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="guest-filter__children">
+                  <p class="guest-filter__question">
+                    What is the age of the child you’re travelling with?
+                  </p>
+                  <div class="guest-filter__select"></div>
+                </div>
+              </div>
             </div>
+
             <button
               class="button button--reset button--active form__button"
               type="submit"
