@@ -15,7 +15,7 @@
   flex-direction: column;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   ._grid-row-3 {
     grid-column: 1 / -1;
     grid-row: 3;

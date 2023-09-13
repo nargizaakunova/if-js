@@ -1,5 +1,67 @@
 import { getCalendarMonthFor } from './calendar.js';
 
+export const model = {
+  _startDate: null,
+  _endDate: null,
+  get startDate() {
+    return this._startDate;
+  },
+  set startDate(val) {
+    const startDateCaption = document.getElementById('form__date-start');
+    const startDateHiddenInput = document.querySelector(
+      `input[name=startDate]`,
+    );
+    const endDateCaption = document.getElementById('form__date-end');
+    this._startDate = val;
+    if (val) {
+      startDateCaption.textContent = val
+        .toLocaleString('default', {
+          month: 'short',
+          weekday: 'short',
+          day: '2-digit',
+        })
+        .replaceAll(',', '');
+      startDateHiddenInput.value = val
+        .toLocaleString('en-UK', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        })
+        .replaceAll('/', '-');
+    } else {
+      endDateCaption.textContent = 'Check in';
+      startDateHiddenInput.value = '';
+    }
+  },
+  get endDate() {
+    return this._endDate;
+  },
+  set endDate(val) {
+    const endDateHiddenInput = document.querySelector(`input[name=endDate]`);
+    const endDateCaption = document.getElementById('form__date-end');
+    this._endDate = val;
+    if (val) {
+      endDateCaption.textContent = val
+        .toLocaleString('default', {
+          month: 'short',
+          weekday: 'short',
+          day: '2-digit',
+        })
+        .replaceAll(',', '');
+      endDateHiddenInput.value = val
+        .toLocaleString('en-UK', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        })
+        .replaceAll('/', '-');
+    } else {
+      endDateCaption.textContent = 'Check out';
+      endDateHiddenInput.value = '';
+    }
+  },
+};
+
 export default function calendarFilter() {
   const formDateWrapperEl = document.querySelector('.form__date-wrapper');
   const calendarEl = document.querySelector('.calendar');
@@ -8,65 +70,6 @@ export default function calendarFilter() {
   const formDateFieldTitle = document.querySelector(
     '.form__field--date .form__label',
   );
-  const startDateCaption = document.getElementById('form__date-start');
-  const endDateCaption = document.getElementById('form__date-end');
-  const startDateHiddenInput = document.querySelector(`input[name=startDate]`);
-  const endDateHiddenInput = document.querySelector(`input[name=endDate]`);
-
-  const model = {
-    _startDate: null,
-    _endDate: null,
-    get startDate() {
-      return this._startDate;
-    },
-    set startDate(val) {
-      this._startDate = val;
-      if (val) {
-        startDateCaption.textContent = val
-          .toLocaleString('default', {
-            month: 'short',
-            weekday: 'short',
-            day: '2-digit',
-          })
-          .replaceAll(',', '');
-        startDateHiddenInput.value = val
-          .toLocaleString('en-UK', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-          })
-          .replaceAll('/', '-');
-      } else {
-        endDateCaption.textContent = 'Check in';
-        startDateHiddenInput.value = '';
-      }
-    },
-    get endDate() {
-      return this._endDate;
-    },
-    set endDate(val) {
-      this._endDate = val;
-      if (val) {
-        endDateCaption.textContent = val
-          .toLocaleString('default', {
-            month: 'short',
-            weekday: 'short',
-            day: '2-digit',
-          })
-          .replaceAll(',', '');
-        endDateHiddenInput.value = val
-          .toLocaleString('en-UK', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-          })
-          .replaceAll('/', '-');
-      } else {
-        endDateCaption.textContent = 'Check out';
-        endDateHiddenInput.value = '';
-      }
-    },
-  };
 
   function formDateClickHandler() {
     calendarEl.classList.toggle('_is-hidden');
