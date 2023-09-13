@@ -26,8 +26,20 @@ export default async function createHomesSection() {
     const data = await response.json();
     return data;
   }
+
+  async function fetchHotelsDataAndCache() {
+    const storedData = sessionStorage.getItem('hotelsData');
+    if (storedData) {
+      return JSON.parse(storedData);
+    }
+    const data = await fetchHotelsData();
+    sessionStorage.setItem('hotelsData', JSON.stringify(data));
+
+    return data;
+  }
+
   try {
-    const fetchedHotels = await fetchHotelsData();
+    const fetchedHotels = await fetchHotelsDataAndCache();
 
     fetchedHotels.map((card, index) => {
       const homeCardEl = document.createElement('li');
