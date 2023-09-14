@@ -1,3 +1,22 @@
+export async function fetchHotelsData() {
+  const response = await fetch(
+    'https://if-student-api.onrender.com/api/hotels/popular',
+  );
+  const data = await response.json();
+  return data;
+}
+
+export async function fetchHotelsDataAndCache() {
+  const storedData = sessionStorage.getItem('hotelsData');
+  if (storedData) {
+    return JSON.parse(storedData);
+  }
+  const data = await fetchHotelsData();
+  sessionStorage.setItem('hotelsData', JSON.stringify(data));
+
+  return data;
+}
+
 export default async function createHomesSection() {
   const offersSectionEl = document.getElementById('offers');
 
@@ -18,25 +37,6 @@ export default async function createHomesSection() {
   // ul, li, data
   const homesCardsEl = document.createElement('ul');
   homesCardsEl.classList.add('cards', 'homes__cards');
-
-  async function fetchHotelsData() {
-    const response = await fetch(
-      'https://if-student-api.onrender.com/api/hotels/popular',
-    );
-    const data = await response.json();
-    return data;
-  }
-
-  async function fetchHotelsDataAndCache() {
-    const storedData = sessionStorage.getItem('hotelsData');
-    if (storedData) {
-      return JSON.parse(storedData);
-    }
-    const data = await fetchHotelsData();
-    sessionStorage.setItem('hotelsData', JSON.stringify(data));
-
-    return data;
-  }
 
   try {
     const fetchedHotels = await fetchHotelsDataAndCache();
