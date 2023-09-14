@@ -62,69 +62,6 @@ export const model = {
   },
 };
 
-export default function calendarFilter() {
-  const formDateWrapperEl = document.querySelector('.form__date-wrapper');
-  const currentMonthEl = document.querySelector('.calendar__current-month');
-  const nextMonthEl = document.querySelector('.calendar__next-month');
-  const formDateFieldTitle = document.querySelector(
-    '.form__field--date .form__label',
-  );
-
-  formDateWrapperEl.addEventListener('click', formDateClickHandler);
-  formDateFieldTitle.addEventListener('click', formDateClickHandler);
-
-  // sending CURRENT month and NEXT month as parameters to getCalendarMonthFor function
-  const daysOfCurMonth = getCalendarMonthFor(new Date());
-  const nextMonth = new Date(
-    new Date().getFullYear(),
-    new Date().getMonth() + 1,
-    1,
-  );
-  const daysOfNextMonth = getCalendarMonthFor(nextMonth);
-
-  renderCalendarMonth(
-    daysOfCurMonth,
-    new Date(),
-    currentMonthEl,
-    (date, target) => {
-      handleDaysClicked(date, target);
-    },
-  );
-
-  renderCalendarMonth(
-    daysOfNextMonth,
-    nextMonth,
-    nextMonthEl,
-    (date, target) => {
-      handleDaysClicked(date, target);
-    },
-  );
-}
-
-function formDateClickHandler() {
-  const formDateWrapperEl = document.querySelector('.form__date-wrapper');
-  const calendarEl = document.querySelector('.calendar');
-  calendarEl.classList.toggle('_is-hidden');
-  if (!calendarEl.classList.contains('_is-hidden')) {
-    document.addEventListener('click', onClickedOutside);
-  }
-  if (!formDateWrapperEl.classList.contains('_focused')) {
-    formDateWrapperEl.classList.add('_focused');
-  } else {
-    formDateWrapperEl.classList.remove('_focused');
-  }
-}
-
-function onClickedOutside(e) {
-  const formDateWrapperEl = document.querySelector('.form__date-wrapper');
-  const calendarEl = document.querySelector('.calendar');
-  if (!e.target.closest('.form__field--date')) {
-    calendarEl.classList.add('_is-hidden');
-    formDateWrapperEl.classList.remove('_focused');
-    document.removeEventListener('click', onClickedOutside);
-  }
-}
-
 function renderCalendarMonth(
   monthDays,
   month,
@@ -194,6 +131,60 @@ function renderCalendarMonth(
   monthWrapper.append(calendarDaysEl);
 }
 
+function formDateClickHandler() {
+  const formDateWrapperEl = document.querySelector('.form__date-wrapper');
+  const calendarEl = document.querySelector('.calendar');
+  calendarEl.classList.toggle('_is-hidden');
+  if (!calendarEl.classList.contains('_is-hidden')) {
+    document.addEventListener('click', onClickedOutside);
+  }
+  if (!formDateWrapperEl.classList.contains('_focused')) {
+    formDateWrapperEl.classList.add('_focused');
+  } else {
+    formDateWrapperEl.classList.remove('_focused');
+  }
+}
+
+function onClickedOutside(e) {
+  const formDateWrapperEl = document.querySelector('.form__date-wrapper');
+  const calendarEl = document.querySelector('.calendar');
+  if (!e.target.closest('.form__field--date')) {
+    calendarEl.classList.add('_is-hidden');
+    formDateWrapperEl.classList.remove('_focused');
+    document.removeEventListener('click', onClickedOutside);
+  }
+}
+
+function unselectDays() {
+  const daysSelectedSpanEls = document.querySelectorAll('._day-selected');
+  Array.from(daysSelectedSpanEls).forEach((daySelected) => {
+    daySelected.classList.remove('_day-selected');
+  });
+}
+
+function unfillColorBetweenSelectedDays() {
+  document
+    .querySelectorAll('.calendar__month-day._available')
+    .forEach((item) => {
+      item.classList.remove('_days-in-between');
+    });
+}
+
+function fillColorBetweenSelectedDays() {
+  let selectionMode = false;
+  document
+    .querySelectorAll('.calendar__month-day._available')
+    .forEach((item) => {
+      if (item.classList.contains('_day-selected')) {
+        selectionMode = !selectionMode;
+        return;
+      }
+      if (selectionMode) {
+        item.classList.add('_days-in-between');
+      }
+    });
+}
+
 function handleDaysClicked(date, target) {
   const formDateWrapperEl = document.querySelector('.form__date-wrapper');
   const calendarEl = document.querySelector('.calendar');
@@ -224,32 +215,41 @@ function handleDaysClicked(date, target) {
   }
 }
 
-function unselectDays() {
-  const daysSelectedSpanEls = document.querySelectorAll('._day-selected');
-  Array.from(daysSelectedSpanEls).forEach((daySelected) => {
-    daySelected.classList.remove('_day-selected');
-  });
-}
+export default function calendarFilter() {
+  const formDateWrapperEl = document.querySelector('.form__date-wrapper');
+  const currentMonthEl = document.querySelector('.calendar__current-month');
+  const nextMonthEl = document.querySelector('.calendar__next-month');
+  const formDateFieldTitle = document.querySelector(
+    '.form__field--date .form__label',
+  );
 
-function fillColorBetweenSelectedDays() {
-  let selectionMode = false;
-  document
-    .querySelectorAll('.calendar__month-day._available')
-    .forEach((item) => {
-      if (item.classList.contains('_day-selected')) {
-        selectionMode = !selectionMode;
-        return;
-      }
-      if (selectionMode) {
-        item.classList.add('_days-in-between');
-      }
-    });
-}
+  formDateWrapperEl.addEventListener('click', formDateClickHandler);
+  formDateFieldTitle.addEventListener('click', formDateClickHandler);
 
-function unfillColorBetweenSelectedDays() {
-  document
-    .querySelectorAll('.calendar__month-day._available')
-    .forEach((item) => {
-      item.classList.remove('_days-in-between');
-    });
+  // sending CURRENT month and NEXT month as parameters to getCalendarMonthFor function
+  const daysOfCurMonth = getCalendarMonthFor(new Date());
+  const nextMonth = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    1,
+  );
+  const daysOfNextMonth = getCalendarMonthFor(nextMonth);
+
+  renderCalendarMonth(
+    daysOfCurMonth,
+    new Date(),
+    currentMonthEl,
+    (date, target) => {
+      handleDaysClicked(date, target);
+    },
+  );
+
+  renderCalendarMonth(
+    daysOfNextMonth,
+    nextMonth,
+    nextMonthEl,
+    (date, target) => {
+      handleDaysClicked(date, target);
+    },
+  );
 }

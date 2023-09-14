@@ -1,107 +1,14 @@
 const maxChildrenNum = 10;
 const selectedAges = new Array(maxChildrenNum).fill(0);
 
-export default function formGuestsFilter() {
-  // DOM ELEMENTS:
-  const guestsFieldWrapperEl = document.querySelector('.form__guests-wrapper');
-
-  // adults
-  const adultsDecreaseBtnEl = document.querySelector(
-    '.guest-filter__adults--decrement',
-  );
-  const adultsIncreaseBtnEl = document.querySelector(
-    '.guest-filter__adults--increment',
-  );
-  const adultsCountEl = document.querySelector('.guest-filter__count--adults');
-
-  // children
-  const childrenDecreaseBtnEl = document.querySelector(
-    '.guest-filter__children--decrement',
-  );
-  const childrenIncreaseBtnEl = document.querySelector(
-    '.guest-filter__children--increment',
-  );
-  const childrenCountEl = document.querySelector(
-    '.guest-filter__count--children',
-  );
-  const guestFilterChildrenEl = document.querySelector(
-    '.guest-filter__children',
-  );
-
-  // rooms
-  const roomsDecreaseBtnEl = document.querySelector(
-    '.guest-filter__rooms--decrement',
-  );
-  const roomsIncreaseBtnEl = document.querySelector(
-    '.guest-filter__rooms--increment',
-  );
-  const roomsCountEl = document.querySelector('.guest-filter__count--rooms');
-
-  const formAdultsSpanEl = document.getElementById('form__adults-span');
-  const formChildrenSpanEl = document.getElementById('form__children-span');
-  const formRoomsSpanEl = document.getElementById('form__rooms-span');
-
-  // hidden form inputs
-  const adultsHiddenInput = document.querySelector(`input[name=adults]`);
-  const childrenHiddenInput = document.querySelector(`input[name=children]`);
-  const roomsHiddenInput = document.querySelector(`input[name=rooms]`);
-
-  // Click on Guest
-  guestsFieldWrapperEl.addEventListener('click', onGuestClick);
-
-  // INITIATE COUNTER FOR ADULTS
-  initiateCounter({
-    el: adultsCountEl,
-    decreaseBtn: adultsDecreaseBtnEl,
-    increaseBtn: adultsIncreaseBtnEl,
-    min: 1,
-    max: 30,
-    onDecrease: (curVal) => {
-      changeFormFieldVal(formAdultsSpanEl, curVal);
-      updateHiddenInputVal(adultsHiddenInput, curVal);
-    },
-    onIncrease: (curVal) => {
-      changeFormFieldVal(formAdultsSpanEl, curVal);
-      updateHiddenInputVal(adultsHiddenInput, curVal);
-    },
-  });
-
-  // INITIATE COUNTER FOR CHILDREN
-  initiateCounter({
-    el: childrenCountEl,
-    decreaseBtn: childrenDecreaseBtnEl,
-    increaseBtn: childrenIncreaseBtnEl,
-    min: 0,
-    max: 10,
-    optionalElementsToShow: [guestFilterChildrenEl],
-    onDecrease: (curVal) => {
-      updateChildrenAgeSelects(curVal);
-      changeFormFieldVal(formChildrenSpanEl, curVal);
-      updateHiddenInputVal(childrenHiddenInput, curVal);
-    },
-    onIncrease: (curVal) => {
-      updateChildrenAgeSelects(curVal);
-      changeFormFieldVal(formChildrenSpanEl, curVal);
-      updateHiddenInputVal(childrenHiddenInput, curVal);
-    },
-  });
-
-  // INITIATE COUNTER FOR ROOMS
-  initiateCounter({
-    el: roomsCountEl,
-    decreaseBtn: roomsDecreaseBtnEl,
-    increaseBtn: roomsIncreaseBtnEl,
-    min: 1,
-    max: 30,
-    onDecrease: (curVal) => {
-      changeFormFieldVal(formRoomsSpanEl, curVal);
-      updateHiddenInputVal(roomsHiddenInput, curVal);
-    },
-    onIncrease: (curVal) => {
-      changeFormFieldVal(formRoomsSpanEl, curVal);
-      updateHiddenInputVal(roomsHiddenInput, curVal);
-    },
-  });
+function onClickOutside(e) {
+  const guestFilterEl = document.querySelector('.guest-filter');
+  const guestsFieldWrapperEl = event.currentTarget;
+  if (!e.target.closest('.form__field--guests')) {
+    guestFilterEl.classList.add('_is-hidden');
+    guestsFieldWrapperEl.classList.remove('_focused');
+    document.removeEventListener('click', onClickOutside);
+  }
 }
 
 function onGuestClick(event) {
@@ -112,13 +19,7 @@ function onGuestClick(event) {
   guestFilterEl.classList.toggle('_is-hidden');
   // hide guest pop-up when click outside
   if (!guestFilterEl.classList.contains('_is-hidden')) {
-    document.addEventListener('click', function onClickOutside(e) {
-      if (!e.target.closest('.form__field--guests')) {
-        guestFilterEl.classList.add('_is-hidden');
-        guestsFieldWrapperEl.classList.remove('_focused');
-        document.removeEventListener('click', onClickOutside);
-      }
-    });
+    document.addEventListener('click', onClickOutside);
   }
   if (!guestsFieldWrapperEl.classList.contains('_focused')) {
     guestsFieldWrapperEl.classList.add('_focused');
@@ -228,4 +129,107 @@ function changeFormFieldVal(el, counter) {
 
 function updateHiddenInputVal(el, curVal) {
   el.value = curVal;
+}
+
+export default function formGuestsFilter() {
+  // DOM ELEMENTS:
+  const guestsFieldWrapperEl = document.querySelector('.form__guests-wrapper');
+
+  // adults
+  const adultsDecreaseBtnEl = document.querySelector(
+    '.guest-filter__adults--decrement',
+  );
+  const adultsIncreaseBtnEl = document.querySelector(
+    '.guest-filter__adults--increment',
+  );
+  const adultsCountEl = document.querySelector('.guest-filter__count--adults');
+
+  // children
+  const childrenDecreaseBtnEl = document.querySelector(
+    '.guest-filter__children--decrement',
+  );
+  const childrenIncreaseBtnEl = document.querySelector(
+    '.guest-filter__children--increment',
+  );
+  const childrenCountEl = document.querySelector(
+    '.guest-filter__count--children',
+  );
+  const guestFilterChildrenEl = document.querySelector(
+    '.guest-filter__children',
+  );
+
+  // rooms
+  const roomsDecreaseBtnEl = document.querySelector(
+    '.guest-filter__rooms--decrement',
+  );
+  const roomsIncreaseBtnEl = document.querySelector(
+    '.guest-filter__rooms--increment',
+  );
+  const roomsCountEl = document.querySelector('.guest-filter__count--rooms');
+
+  const formAdultsSpanEl = document.getElementById('form__adults-span');
+  const formChildrenSpanEl = document.getElementById('form__children-span');
+  const formRoomsSpanEl = document.getElementById('form__rooms-span');
+
+  // hidden form inputs
+  const adultsHiddenInput = document.querySelector(`input[name=adults]`);
+  const childrenHiddenInput = document.querySelector(`input[name=children]`);
+  const roomsHiddenInput = document.querySelector(`input[name=rooms]`);
+
+  // Click on Guest
+  guestsFieldWrapperEl.addEventListener('click', onGuestClick);
+
+  // INITIATE COUNTER FOR ADULTS
+  initiateCounter({
+    el: adultsCountEl,
+    decreaseBtn: adultsDecreaseBtnEl,
+    increaseBtn: adultsIncreaseBtnEl,
+    min: 1,
+    max: 30,
+    onDecrease: (curVal) => {
+      changeFormFieldVal(formAdultsSpanEl, curVal);
+      updateHiddenInputVal(adultsHiddenInput, curVal);
+    },
+    onIncrease: (curVal) => {
+      changeFormFieldVal(formAdultsSpanEl, curVal);
+      updateHiddenInputVal(adultsHiddenInput, curVal);
+    },
+  });
+
+  // INITIATE COUNTER FOR CHILDREN
+  initiateCounter({
+    el: childrenCountEl,
+    decreaseBtn: childrenDecreaseBtnEl,
+    increaseBtn: childrenIncreaseBtnEl,
+    min: 0,
+    max: 10,
+    optionalElementsToShow: [guestFilterChildrenEl],
+    onDecrease: (curVal) => {
+      updateChildrenAgeSelects(curVal);
+      changeFormFieldVal(formChildrenSpanEl, curVal);
+      updateHiddenInputVal(childrenHiddenInput, curVal);
+    },
+    onIncrease: (curVal) => {
+      updateChildrenAgeSelects(curVal);
+      changeFormFieldVal(formChildrenSpanEl, curVal);
+      updateHiddenInputVal(childrenHiddenInput, curVal);
+    },
+  });
+
+  // INITIATE COUNTER FOR ROOMS
+  initiateCounter({
+    el: roomsCountEl,
+    decreaseBtn: roomsDecreaseBtnEl,
+    increaseBtn: roomsIncreaseBtnEl,
+    min: 1,
+    max: 30,
+    onDecrease: (curVal) => {
+      changeFormFieldVal(formRoomsSpanEl, curVal);
+      updateHiddenInputVal(roomsHiddenInput, curVal);
+    },
+    onIncrease: (curVal) => {
+      changeFormFieldVal(formRoomsSpanEl, curVal);
+      updateHiddenInputVal(roomsHiddenInput, curVal);
+    },
+  });
 }
