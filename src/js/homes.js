@@ -59,21 +59,23 @@ export default async function createHomesSection() {
       homeImgEl.classList.add('home__img');
       homeImgEl.alt = card.name;
 
-      if (index <= 3) {
-        homeImgEl.src = card.imageUrl;
-
-        const homeTitleEl = document.createElement('h3');
-        homeTitleEl.classList.add('home__title');
-        homeTitleEl.textContent = card.name;
-
-        const homeLocationEl = document.createElement('p');
-        homeLocationEl.classList.add('home__location');
-        homeLocationEl.textContent = `${card.city}, ${card.country}`;
-
-        homeWrapperEl.append(homeImgEl, homeTitleEl, homeLocationEl);
-        homeCardEl.appendChild(homeWrapperEl);
-        homesCardsEl.appendChild(homeCardEl);
+      if (index > 3) {
+        return;
       }
+
+      homeImgEl.src = card.imageUrl;
+
+      const homeTitleEl = document.createElement('h3');
+      homeTitleEl.classList.add('home__title');
+      homeTitleEl.textContent = card.name;
+
+      const homeLocationEl = document.createElement('p');
+      homeLocationEl.classList.add('home__location');
+      homeLocationEl.textContent = `${card.city}, ${card.country}`;
+
+      homeWrapperEl.append(homeImgEl, homeTitleEl, homeLocationEl);
+      homeCardEl.appendChild(homeWrapperEl);
+      homesCardsEl.appendChild(homeCardEl);
     });
 
     homesWrapperEl.appendChild(homesCardsEl);
