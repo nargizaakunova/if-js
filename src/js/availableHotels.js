@@ -2,9 +2,7 @@ export function getAvailableHotels(value) {
   const hotelsUrl = new URL('https://if-student-api.onrender.com/api/hotels');
 
   hotelsUrl.searchParams.append('search', value);
-  return fetch(
-    hotelsUrl.href,
-  ).then((response) => response.json());
+  return fetch(hotelsUrl.href).then((response) => response.json());
 }
 
 export async function renderAvailableHotels(value) {
