@@ -1,10 +1,9 @@
 export function getAvailableHotels(value) {
-  const queryParams = new URLSearchParams({
-    search: value,
-  });
+  const hotelsUrl = new URL('https://if-student-api.onrender.com/api/hotels');
 
+  hotelsUrl.searchParams.append('search', value);
   return fetch(
-    `https://if-student-api.onrender.com/api/hotels?${queryParams}`,
+    hotelsUrl.href,
   ).then((response) => response.json());
 }
 
