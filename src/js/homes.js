@@ -1,3 +1,21 @@
+function bubbleSortByNames(arr) {
+  let swapped;
+  for (let i = 0; i < arr.length; i++) {
+    swapped = false;
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j].name > arr[j + 1].name) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        swapped = true;
+      }
+    }
+    if (!swapped) {
+      return arr;
+    }
+  }
+
+  return arr;
+}
+
 export async function fetchHotelsData() {
   const response = await fetch(
     'https://if-student-api.onrender.com/api/hotels/popular',
@@ -41,7 +59,9 @@ export default async function createHomesSection() {
   try {
     const fetchedHotels = await fetchHotelsDataAndCache();
 
-    fetchedHotels.map((card, index) => {
+    const sortedHotels = bubbleSortByNames(fetchedHotels);
+
+    sortedHotels.map((card, index) => {
       const homeCardEl = document.createElement('li');
       homeCardEl.classList.add(
         'col-lg-3',
