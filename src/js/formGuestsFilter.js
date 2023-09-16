@@ -3,7 +3,7 @@ const selectedAges = new Array(maxChildrenNum).fill(0);
 
 function onClickOutside(e) {
   const guestFilterEl = document.querySelector('.guest-filter');
-  const guestsFieldWrapperEl = event.currentTarget;
+  const guestsFieldWrapperEl = document.querySelector('.form__guests-wrapper');
   if (!e.target.closest('.form__field--guests')) {
     guestFilterEl.classList.add('_is-hidden');
     guestsFieldWrapperEl.classList.remove('_focused');
