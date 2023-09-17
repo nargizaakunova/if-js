@@ -1,5 +1,5 @@
 const maxChildrenNum = 10;
-const selectedAges = new Array(maxChildrenNum).fill(0);
+export const selectedAges = new Array(maxChildrenNum).fill(0);
 
 function onClickOutside(e) {
   const guestFilterEl = document.querySelector('.guest-filter');
@@ -184,7 +184,7 @@ export default function formGuestsFilter() {
     el: adultsCountEl,
     decreaseBtn: adultsDecreaseBtnEl,
     increaseBtn: adultsIncreaseBtnEl,
-    min: 1,
+    min: 0,
     max: 30,
     onDecrease: (curVal) => {
       changeFormFieldVal(formAdultsSpanEl, curVal);
