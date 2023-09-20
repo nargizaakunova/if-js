@@ -1,7 +1,139 @@
+const maxChildrenNum = 10;
+const selectedAges = new Array(maxChildrenNum).fill(0);
+
+function onClickOutside(e) {
+  const guestFilterEl = document.querySelector('.guest-filter');
+  const guestsFieldWrapperEl = event.currentTarget;
+  if (!e.target.closest('.form__field--guests')) {
+    guestFilterEl.classList.add('_is-hidden');
+    guestsFieldWrapperEl.classList.remove('_focused');
+    document.removeEventListener('click', onClickOutside);
+  }
+}
+
+function onGuestClick(event) {
+  const guestFilterEl = document.querySelector('.guest-filter');
+  const guestsFieldWrapperEl = event.currentTarget;
+
+  // show guest pop-up
+  guestFilterEl.classList.toggle('_is-hidden');
+  // hide guest pop-up when click outside
+  if (!guestFilterEl.classList.contains('_is-hidden')) {
+    document.addEventListener('click', onClickOutside);
+  }
+  if (!guestsFieldWrapperEl.classList.contains('_focused')) {
+    guestsFieldWrapperEl.classList.add('_focused');
+  } else {
+    guestsFieldWrapperEl.classList.remove('_focused');
+  }
+}
+
+// COUNTER GENERIC FUNCTION
+function initiateCounter({
+  el,
+  decreaseBtn,
+  increaseBtn,
+  min,
+  max,
+  optionalElementsToShow = [],
+  onDecrease,
+  onIncrease,
+}) {
+  let currVal = el.textContent;
+
+  // Initial state setup
+  if (Number(currVal) === min) {
+    decreaseBtn.classList.add('_inactive');
+    decreaseBtn.disabled = true;
+    optionalElementsToShow.forEach((e) => e.classList.add('_is-hidden'));
+  }
+
+  // Increase Button
+  increaseBtn.addEventListener('click', () => {
+    if (Number(currVal) < max) {
+      decreaseBtn.classList.remove('_inactive');
+      increaseBtn.disabled = false;
+      decreaseBtn.disabled = false;
+      optionalElementsToShow.forEach((e) => e.classList.remove('_is-hidden'));
+      currVal = (Number(currVal) + 1).toString();
+      el.textContent = currVal;
+    }
+    if (Number(currVal) === max) {
+      increaseBtn.classList.add('_inactive');
+      increaseBtn.disabled = true;
+    }
+
+    if (onIncrease) {
+      onIncrease(currVal);
+    }
+  });
+
+  // Decrease Button
+  decreaseBtn.addEventListener('click', () => {
+    if (Number(currVal) > min) {
+      decreaseBtn.classList.remove('_inactive');
+      increaseBtn.classList.remove('_inactive');
+      increaseBtn.disabled = false;
+      decreaseBtn.disabled = false;
+      currVal = (Number(currVal) - 1).toString();
+      el.textContent = currVal;
+    }
+    if (Number(currVal) === min) {
+      decreaseBtn.classList.add('_inactive');
+      decreaseBtn.disabled = true;
+      optionalElementsToShow.forEach((e) => e.classList.add('_is-hidden'));
+    }
+
+    if (onDecrease) {
+      onDecrease(currVal);
+    }
+  });
+}
+
+function updateChildrenAgeSelects(curValue) {
+  // nullify ages for removed children
+  for (let i = curValue; i < maxChildrenNum; i++) {
+    selectedAges[i] = 0;
+  }
+
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('guest-filter__select');
+
+  for (let i = 0; i < +curValue; i++) {
+    const selectEl = document.createElement('select');
+    selectEl.name = 'childAge';
+    selectEl.classList.add('guest-filter__select--button', '_custom-select');
+
+    for (let j = 0; j <= 17; j++) {
+      const optionEl = document.createElement('option');
+      optionEl.value = j;
+      optionEl.textContent = `${j} years old`;
+      selectEl.append(optionEl);
+    }
+
+    selectEl.onchange = (event) => {
+      selectedAges[i] = event.target.value;
+    };
+
+    selectEl.value = selectedAges[i];
+    wrapper.append(selectEl);
+  }
+
+  const guestFilterSelectEl = document.querySelector('.guest-filter__select');
+  guestFilterSelectEl.parentNode.replaceChild(wrapper, guestFilterSelectEl);
+}
+
+function changeFormFieldVal(el, counter) {
+  el.textContent = counter;
+}
+
+function updateHiddenInputVal(el, curVal) {
+  el.value = curVal;
+}
+
 export default function formGuestsFilter() {
   // DOM ELEMENTS:
   const guestsFieldWrapperEl = document.querySelector('.form__guests-wrapper');
-  const guestFilterEl = document.querySelector('.guest-filter');
 
   // adults
   const adultsDecreaseBtnEl = document.querySelector(
@@ -45,87 +177,7 @@ export default function formGuestsFilter() {
   const roomsHiddenInput = document.querySelector(`input[name=rooms]`);
 
   // Click on Guest
-  guestsFieldWrapperEl.addEventListener('click', () => {
-    // show guest pop-up
-    guestFilterEl.classList.toggle('_is-hidden');
-    // hide guest pop-up when click outside
-    if (!guestFilterEl.classList.contains('_is-hidden')) {
-      document.addEventListener('click', function onClickOutside(e) {
-        if (!e.target.closest('.form__field--guests')) {
-          guestFilterEl.classList.add('_is-hidden');
-          guestsFieldWrapperEl.classList.remove('_focused');
-          document.removeEventListener('click', onClickOutside);
-        }
-      });
-    }
-    if (!guestsFieldWrapperEl.classList.contains('_focused')) {
-      guestsFieldWrapperEl.classList.add('_focused');
-    } else {
-      guestsFieldWrapperEl.classList.remove('_focused');
-    }
-  });
-
-  // COUNTER GENERIC FUNCTION
-  function initiateCounter({
-    el,
-    decreaseBtn,
-    increaseBtn,
-    min,
-    max,
-    optionalElementsToShow = [],
-    onDecrease,
-    onIncrease,
-  }) {
-    let currVal = el.textContent;
-
-    // Initial state setup
-    if (Number(currVal) === min) {
-      decreaseBtn.classList.add('_inactive');
-      decreaseBtn.disabled = true;
-      optionalElementsToShow.forEach((e) => e.classList.add('_is-hidden'));
-    }
-
-    // Increase Button
-    increaseBtn.addEventListener('click', () => {
-      if (Number(currVal) < max) {
-        decreaseBtn.classList.remove('_inactive');
-        increaseBtn.disabled = false;
-        decreaseBtn.disabled = false;
-        optionalElementsToShow.forEach((e) => e.classList.remove('_is-hidden'));
-        currVal = (Number(currVal) + 1).toString();
-        el.textContent = currVal;
-      }
-      if (Number(currVal) === max) {
-        increaseBtn.classList.add('_inactive');
-        increaseBtn.disabled = true;
-      }
-
-      if (onIncrease) {
-        onIncrease(currVal);
-      }
-    });
-
-    // Decrease Button
-    decreaseBtn.addEventListener('click', () => {
-      if (Number(currVal) > min) {
-        decreaseBtn.classList.remove('_inactive');
-        increaseBtn.classList.remove('_inactive');
-        increaseBtn.disabled = false;
-        decreaseBtn.disabled = false;
-        currVal = (Number(currVal) - 1).toString();
-        el.textContent = currVal;
-      }
-      if (Number(currVal) === min) {
-        decreaseBtn.classList.add('_inactive');
-        decreaseBtn.disabled = true;
-        optionalElementsToShow.forEach((e) => e.classList.add('_is-hidden'));
-      }
-
-      if (onDecrease) {
-        onDecrease(currVal);
-      }
-    });
-  }
+  guestsFieldWrapperEl.addEventListener('click', onGuestClick);
 
   // INITIATE COUNTER FOR ADULTS
   initiateCounter({
@@ -180,48 +232,4 @@ export default function formGuestsFilter() {
       updateHiddenInputVal(roomsHiddenInput, curVal);
     },
   });
-
-  const maxChildrenNum = 10;
-  const selectedAges = new Array(maxChildrenNum).fill(0);
-
-  function updateChildrenAgeSelects(curValue) {
-    // nullify ages for removed children
-    for (let i = curValue; i < maxChildrenNum; i++) {
-      selectedAges[i] = 0;
-    }
-
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('guest-filter__select');
-
-    for (let i = 0; i < +curValue; i++) {
-      const selectEl = document.createElement('select');
-      selectEl.name = 'childAge';
-      selectEl.classList.add('guest-filter__select--button', '_custom-select');
-
-      for (let j = 0; j <= 17; j++) {
-        const optionEl = document.createElement('option');
-        optionEl.value = j;
-        optionEl.textContent = `${j} years old`;
-        selectEl.append(optionEl);
-      }
-
-      selectEl.onchange = (event) => {
-        selectedAges[i] = event.target.value;
-      };
-
-      selectEl.value = selectedAges[i];
-      wrapper.append(selectEl);
-    }
-
-    const guestFilterSelectEl = document.querySelector('.guest-filter__select');
-    guestFilterSelectEl.parentNode.replaceChild(wrapper, guestFilterSelectEl);
-  }
-
-  function changeFormFieldVal(el, counter) {
-    el.textContent = counter;
-  }
-
-  function updateHiddenInputVal(el, curVal) {
-    el.value = curVal;
-  }
 }

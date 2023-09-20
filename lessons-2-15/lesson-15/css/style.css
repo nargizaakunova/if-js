@@ -1,0 +1,90 @@
+/* Global styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+#image-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 200px;
+  border: 1px #515151 solid;
+  margin-bottom: 20px;
+  cursor: pointer;
+  background-size: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style text inputs */
+input[type='text'] {
+  padding: 12px 20px;
+  margin-bottom: 16px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f5f9fc;
+  transition: border-color 0.3s ease;
+}
+
+input[type='text']:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Style the file input */
+input[type='file'] {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* Style the 'button' type button */
+button[type='button'] {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+button[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+/* Style the submit button */
+button[type='submit'] {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Change button color on hover */
+button[type='submit']:hover {
+  background-color: #0056b3;
+}
