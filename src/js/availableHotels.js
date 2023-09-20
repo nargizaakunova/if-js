@@ -1,12 +1,28 @@
-export function getAvailableHotels(value) {
+export function getAvailableHotels(queries) {
   const hotelsUrl = new URL('https://if-student-api.onrender.com/api/hotels');
 
-  hotelsUrl.searchParams.append('search', value);
-  return fetch(hotelsUrl.href).then((response) => response.json());
+  if (queries.searchCity) {
+    hotelsUrl.searchParams.append('search', queries.searchCity);
+  }
+  if (queries.adultsCount) {
+    hotelsUrl.searchParams.append('adults', queries.adultsCount);
+  }
+  if (queries.childrenCount) {
+    hotelsUrl.searchParams.append('children', queries.childrenCount);
+  }
+  if (queries.roomsCount) {
+    hotelsUrl.searchParams.append('rooms', queries.roomsCount);
+  }
+
+  try {
+    return fetch(hotelsUrl.href).then((response) => response.json());
+  } catch (e) {
+    console.error(e);
+  }
 }
 
-export async function renderAvailableHotels(value) {
-  const hotels = await getAvailableHotels(value);
+export async function renderAvailableHotels(queries) {
+  const hotels = await getAvailableHotels(queries);
   await createAvailableHotelsSection(hotels);
 }
 
