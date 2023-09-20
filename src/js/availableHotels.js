@@ -4,6 +4,12 @@ export function getAvailableHotels(queries) {
   if (queries.searchCity) {
     hotelsUrl.searchParams.append('search', queries.searchCity);
   }
+  if (queries.startDate) {
+    hotelsUrl.searchParams.append('dateFrom', queries.startDate);
+  }
+  if (queries.endDate) {
+    hotelsUrl.searchParams.append('dateTo', queries.endDate);
+  }
   if (queries.adultsCount) {
     hotelsUrl.searchParams.append('adults', queries.adultsCount);
   }
